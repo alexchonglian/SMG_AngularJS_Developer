@@ -168,7 +168,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Accept valid game",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL,
 				height: validHeight,
@@ -186,7 +186,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidGameURL",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, // <= here goes wrong
 				height: invalidHeight,
@@ -204,7 +204,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidHeight",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, 
 				height: invalidHeight, // <= here goes wrong
@@ -222,7 +222,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidWidth",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, 
 				height: validHeight,
@@ -240,7 +240,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidNumPlayers",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL,
 				height: validHeight,
@@ -258,7 +258,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidIsTurnBased",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, 
 				height: validHeight,
@@ -276,7 +276,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidTurnTime",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, 
 				height: validHeight,
@@ -294,7 +294,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidHasPassAndPlay",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, 
 				height: validHeight,
@@ -312,7 +312,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidScreenShots",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, 
 				height: validHeight,
@@ -330,7 +330,7 @@ describe("Game Submission Test",function(){
 	});
 
 	it("Should Reject invalidGameDescription",function(done){
-		request.post({url:baseUrl+"/developer/resetpassword",
+		request.post({url:baseUrl+"/developer/gamesubmission",
 			form:{
 				gameurl: validGameURL, 
 				height: validHeight,
