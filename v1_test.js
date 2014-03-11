@@ -1,3 +1,11 @@
+
+
+// please make sure the following entries stored in DB before running the test
+//
+// var existedEmail = "alexchonglian@gmail.com";
+// var correctPassword = "correctPassword";
+
+
 var assert = require('assert');
 var request = require('request');
 var baseUrl = "http://game-3627-platform.com";  //just a temporary one will change later to our domain
@@ -5,7 +13,8 @@ var validPW = "ABC123456";
 var invalidPW = "1";
 var validEmail = "jh3627@stern.nyu.edu";
 var invalidEmail = "jh3627";
-
+var existedEmail = "alexchonglian@gmail.com";
+var nonExistedEmail = "aaaaa@aaaa.aaa";
 
 describe("Sign Up Test",function(){
 
@@ -20,6 +29,13 @@ describe("Sign Up Test",function(){
 	it("Invalid email credential should fail",function(done){
 		request.post({url:baseUrl+"/developer/signup",form:{email:invalidEmail,password:validPW}},function(e,r,body){
 			assert.equal(body,{type:"signup",status:"failure",msg:"invalid email"});
+			done();
+		});
+	});
+
+	it("Existed email credential should fail",function(done){
+		request.post({url:baseUrl+"/developer/signup",form:{email:existedEmail,password:validPW}},function(e,r,body){
+			assert.equal(body,{type:"signup",status:"failure",msg:"existed email"});
 			done();
 		});
 	});
@@ -69,6 +85,14 @@ describe("Email Verification Test",function(done){
 });
 
 describe("Login Test",function(){  // test for non-existing user is not possible as I have no way to verifying if a user exist in the database
+	it("nonexistent email credential should fail",function(done){
+		request.post({url:baseUrl+"/developer/login",form:{email:nonExistedEmail,password:validPW}},function(e,r,body){
+			assert.equal(body,{type:"signup",status:"failure",msg:"existed email"});
+			done();
+		});
+	});
+
+
 	it("Getting login page shoudl succeed",function(done){
 		request.post({url:baseUrl+"/developer/login"},function(e,r,body){
 			assert.equal(r.statusCode,200);
@@ -91,7 +115,7 @@ describe("Login Test",function(){  // test for non-existing user is not possible
 	});
 
 	it("Good credential should pass",function(done){
-		request.post({url:baseUrl+"/developer/login",form:{email:validEmail,password:validPW}},function(e,r,body){
+		request.post({url:baseUrl+"/developer/login",form:{email:existedEmail,password:correctPassword}},function(e,r,body){
 			assert.equal(body,{type:"login",status:"success",msg:"sign up success"});
 			done();
 		});
