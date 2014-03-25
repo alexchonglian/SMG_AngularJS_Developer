@@ -29,7 +29,7 @@ angular.module('dormCatApp.controllers', []).
   						console.log("Email: " + returnVal.email);
   						console.log("Password: " + returnVal.password);
               console.log($location.url());
-              $window.location.href = 'http://localhost:8000/loggedin.html';
+              $window.location.href = 'http://1.smg-angularjs-developer.appspot.com/loggedin.html';
   					}
   				}).
   				error(function(returnVal)
