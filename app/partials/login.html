@@ -1,14 +1,22 @@
-
 <div class='loginform'>
 	<form>
 		<div>
-			<input type='email' name='email'>
+			Developer ID: <input type='text' ng-model='devId'>
 		</div>
 		<div>
-			<input type='password' name='password'>
+			Password: <input type='password' ng-model='password'>
 		</div>
 		<div>
-			<button class='btn btn-embossed btn-inverse'>Log In</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='submitLogin()'>Log In</button>
+		</div>
+		<div ng-model='successDiv' style='display:none'>
+			Login Success!
+		</div>
+		<div ng-model='developerIdFailureDiv' style='display:none'>
+			Login Failed - Invalid Developer Id
+		</div>
+		<div ng-model='developerPasswordFailureDiv' style='display:none'>
+			Login Failed - Incorrect Password
 		</div>
 	</form>
 </div>

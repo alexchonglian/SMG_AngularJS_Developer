@@ -1,13 +1,22 @@
 <div class='signupform'>
 	<form>
 		<div>
-			<input type='email' name='email'>
+			Email: <input type='email' ng-model='email'>
 		</div>
 		<div>
-			<input type='password' name='password'>
+			Password: <input type='password' ng-model='password'>
 		</div>
 		<div>
-			<button class='btn btn-embossed btn-inverse'>Sign Up</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='createDeveloper()'>Sign Up</button>
+		</div>
+		<div ng-model='successDiv' style='display:none'>
+			Developer Creation Success!
+		</div>
+		<div ng-model='emailFailureDiv' style='display:none'>
+			Developer Creation Failed - Email already registered
+		</div>
+		<div ng-model='developerPasswordFailureDiv' style='display:none'>
+			Developer Creation Failed - Invalid password
 		</div>
 	</form>
 </div>
