@@ -9,14 +9,8 @@
 		<div>
 			<button class='btn btn-embossed btn-inverse' ng-click='submitLogin()'>Log In</button>
 		</div>
-		<div ng-model='successDiv' style='display:none'>
-			Login Success!
-		</div>
-		<div ng-model='developerIdFailureDiv' style='display:none'>
-			Login Failed - Invalid Developer Id
-		</div>
-		<div ng-model='developerPasswordFailureDiv' style='display:none'>
-			Login Failed - Incorrect Password
+		<div>
+			<p ng-bind-html="userInfo"></p>
 		</div>
 	</form>
 </div>

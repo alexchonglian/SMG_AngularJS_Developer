@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('dormCatApp.controllers', []).
-  controller('LoginCtrl', ['$scope','$http','$location',function($scope, $http, $location) {
+  controller('LoginCtrl', ['$scope','$http','$location','$window','$sce',function($scope, $http, $location, $window, $sce) {
   		$scope.submitLogin = function()
   		{
   			$http({
@@ -15,11 +15,21 @@ angular.module('dormCatApp.controllers', []).
   					if(returnVal.error)
   					{
   						console.log("Error: " + returnVal.error);
+              if(returnVal.error == "WRONG_PASSWORD")
+              {
+                $scope.userInfo = $sce.trustAsHtml("Login failed - Password incorrect");
+              }
+              else if(returnVal.error == "WRONG_DEVELOPER_ID")
+              {
+                $scope.userInfo = $sce.trustAsHtml("Login failed - Developer ID not found");
+              }
   					}
   					else
   					{
   						console.log("Email: " + returnVal.email);
   						console.log("Password: " + returnVal.password);
+              console.log($location.url());
+              $window.location.href = 'http://localhost:8000/loggedin.html';
   					}
   				}).
   				error(function(returnVal)
@@ -28,7 +38,7 @@ angular.module('dormCatApp.controllers', []).
   				});
   		}
   	}])
-  	.controller('SignupCtrl', ['$scope','$http','$location', function($scope, $http, $location) {
+  	.controller('SignupCtrl', ['$scope','$http','$location','$sce', function($scope, $http, $location, $sce) {
 	$scope.createDeveloper = function()
   		{
   			var jsonData = 
@@ -49,12 +59,21 @@ angular.module('dormCatApp.controllers', []).
   				{
   					if(returnVal.error)
   					{
-  						console.log("Error: " + returnVal.error);
+              console.log("Error: " + returnVal.error);
+              if(returnVal.error == "EMAIL_EXISTS")
+              {
+                $scope.userInfo = $sce.trustAsHtml("Sign up failed - Email already registered");
+              }
+              else if(returnVal.error == "MISSING_INFO")
+              {
+                $scope.userInfo = $sce.trustAsHtml("Sign up failed - Email or password not entered");
+              }
   					}
   					else
   					{
   						console.log("Access Signature: " + returnVal.accessSignature);
   						console.log("Developer ID: " + returnVal.developerId);
+              $scope.userInfo = $sce.trustAsHtml("Sign up succeeded!<br>New developer ID - "+returnVal.developerId);
   					}
   				}).
   				error(function(data, status, headers, config)
