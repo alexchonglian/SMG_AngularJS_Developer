@@ -13,9 +13,8 @@ angular.module('dormCatApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
   $routeProvider.when('/signup', {templateUrl: 'partials/signup.html', controller: 'SignupCtrl'});
-  $routeProvider.when('/dash', {templateUrl: 'partials/dashboard.html', controller: 'DashCtrl'});
-  $routeProvider.when('/bug', {templateUrl: 'partials/bugreport.html', controller: 'BugCtrl'});
-  $routeProvider.when('/infodev', {templateUrl: 'partials/infodev.html', controller: 'InfoDevCtrl'});
+  $routeProvider.when('/dash', {templateUrl: 'partials/dash.html', controller: 'DashCtrl'});
+  $routeProvider.when('/bugs', {templateUrl: 'partials/bugs.html', controller: 'BugsCtrl'});
   $routeProvider.when('/infogame', {templateUrl: 'partials/infogame.html', controller: 'InfoGameCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
 }]);
