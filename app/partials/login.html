@@ -1,16 +1,19 @@
 <div class='loginform'>
 	<form>
-		<div>
-			Developer ID: <input type='text' ng-model='devId'>
-		</div>
-		<div>
-			Password: <input type='password' ng-model='password'>
-		</div>
+		<table class='center'>
+			<tr>
+				<td class='right'>Developer ID:</td>
+				<td></td>
+				<td><input type='text' ng_model='devId'></td>
+			</tr>
+			<tr>
+				<td class='right'>Password:</td>
+				<td></td>
+				<td><input type='password' ng-model='password'></td>
+			</tr>
+		</table>
 		<div>
 			<button class='btn btn-embossed btn-inverse' ng-click='submitLogin()'>Log In</button>
-		</div>
-		<div>
-			<p ng-bind-html="userInfo"></p>
 		</div>
 	</form>
 </div>

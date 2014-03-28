@@ -5,6 +5,7 @@
 angular.module('dormCatApp', [
   'ngRoute',
   'ngAnimate',
+  'ngCookies',
   'dormCatApp.filters',
   'dormCatApp.services',
   'dormCatApp.directives',
