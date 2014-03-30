@@ -197,6 +197,30 @@ SMG.controller('AccountCtrl', ['$scope',function($scope) {
 SMG.controller('Logout', ['$scope',function($scope) {
 }]);
 
-SMG.controller('LogoutCtrl', ['$scope',function($scope) {
+SMG.controller('LogoutCtrl', ['$scope','$location','$window','$cookieStore',
+  function($scope, $location, $window, $cookieStore) {
+
+  $scope.yes = function () {
+  $cookieStore.remove("email");
+  $cookieStore.remove("password");
+  $cookieStore.remove("firstName");
+  $cookieStore.remove("lastName");
+  $cookieStore.remove("middleName");
+  $cookieStore.remove("nickname");
+  $cookieStore.remove("accessSignature");
+
+  $window.alert("Logout Successful!");
+
+  var fullLoc = $location.url();
+  var loc = fullLoc.indexOf("loggedin.html");
+  $window.location.href = fullLoc.substring(0,loc) + 'index.html';
+  };
+
+  $scope.no = function () {
+  var fullLoc = $location.url();
+  var loc = fullLoc.indexOf("loggedin.html");
+  $window.location.href = fullLoc.substring(0,loc) + 'loggedin.html';
+  };
+
 }]);
 

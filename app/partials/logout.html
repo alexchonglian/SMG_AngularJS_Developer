@@ -1,2 +1,15 @@
-<h1>End session / cleanup cookies</h1>
-<h1>Redirect to login page</h1>
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="cancel()">&times;</button>
+      <h4 class="modal-title">Log Out</h4>
+    </div>
+    <div class="modal-body">
+      <div>Are you sure you want to log out?</div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" ng-click="yes()">Yes</button>
+      <button type="button" class="btn btn-primary" ng-click="no()">No</button>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
