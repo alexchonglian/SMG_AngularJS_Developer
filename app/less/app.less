@@ -41,11 +41,23 @@ padding: 0;
         	}
         }
     }
+    div{
+      float:left;
+      display:inline;
+      width: 50%;
+      ul {
+        display:inline;
+        width:100%;
+        li {
+          display:inline;
+        }
+      }
+    }
 }
  
 .view-animate-container {
   position:relative;
-  height:300px!important;
+  height:600px!important;
   margin:auto;
   margin-top:50px;
   overflow:hidden;
@@ -88,14 +100,17 @@ padding: 0;
 
 #gamebox
 {
-    width:60%;
+    width:80%;
     margin:auto;
     height:inherit;
     overflow:auto;
     .shadow;
-    padding-left:10px;
+    padding-left:20px;
     table{
-        width:100%;   
-        margin:20px 0px;
+      width:100%;
+      margin:20px 0px;
+      tr {
+        height: 40px;
+      }
     }
 }

@@ -1,0 +1,35 @@
+<div id="gamebox">
+	<br>
+	<div >
+		<table class='center' border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td></td>
+				<td><input type='button' value='Game Name'></td>
+				<td><input type='button' value='Game URL'></td>
+				<td><input type='button' value='Visit'></td>
+				<td>Dashboard</td>
+				<td>Bug Report</td>
+			</tr>
+
+			<tr ng-repeat="game in games">
+				<td><button class='btn btn-embossed btn-inverse' ng-click=''>Edit</button></td>
+				<td>{{game.name}}</td>
+				<td>{{game.url}}</td>
+				<td>{{game.stat}}</td>
+				<td><a href="#/dash">Dashboard</a></td>
+				<td><a href="#/bugs">Bug Report</a></td>
+				
+			</tr>
+
+			<tr>
+				<td><button class='btn btn-embossed btn-inverse' ng-click='showFormForNewGame()'>New</button></td>
+				<td><input type='text' value='Game Name'></td>
+				<td><input type='text' value='Game URL'></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	
+</div>

@@ -2,58 +2,57 @@
 
 /* Controllers */
 
-angular.module('dormCatApp.controllers', ['ngCookies']).
-  controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStore',
-    function($scope, $http, $location, $window, $cookieStore) {
-  		$scope.submitLogin = function()
+var SMG = angular.module('dormCatApp.controllers', ['ngCookies']);
+SMG.controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStore',
+  function($scope, $http, $location, $window, $cookieStore) {$scope.submitLogin = function()
+  	{
+  		$http({
+  			method: 'GET',
+  			url: "http://1.smg-server.appspot.com/developers/"+$scope.devId+"?password="+$scope.password
+  			}).
+  		success(function(returnVal)
   		{
-  			$http({
-  				method: 'GET',
-  				url: "http://1.smg-server.appspot.com/developers/"+$scope.devId+"?password="+$scope.password
-  				}).
-				success(function(returnVal)
-				{
-					if(returnVal.error)
-					{
-						console.log("Error: " + returnVal.error);
-            if(returnVal.error == "WRONG_PASSWORD")
-            {
-              $window.alert("Login failed - Password incorrect!");
-            }
-            else if(returnVal.error == "WRONG_DEVELOPER_ID")
-            {
-              $window.alert("Login failed - Developer ID not found");
-            }
-					}
-					else
-					{
-						console.log("Email: " + returnVal.email);
-						console.log("Password: " + returnVal.password);
-            console.log($location.url());
-            console.log(returnVal);
+  			if(returnVal.error)
+  			{
+  				console.log("Error: " + returnVal.error);
+          if(returnVal.error == "WRONG_PASSWORD")
+          {
+            $window.alert("Login failed - Password incorrect!");
+          }
+          else if(returnVal.error == "WRONG_DEVELOPER_ID")
+          {
+            $window.alert("Login failed - Developer ID not found");
+          }
+  			}
+  			else
+  			{
+  				console.log("Email: " + returnVal.email);
+  				console.log("Password: " + returnVal.password);
+          console.log($location.url());
+          console.log(returnVal);
 
-            $window.alert("Login Successful!");
+          $window.alert("Login Successful!");
 
-            $cookieStore.put("email", returnVal.email);
-            $cookieStore.put("password", returnVal.password);
-            $cookieStore.put("firstName", returnVal.firstName);
-            $cookieStore.put("lastName", returnVal.lastName);
-            $cookieStore.put("middleName", returnVal.middleName);
-            $cookieStore.put("nickname", returnVal.nickname);
-            $cookieStore.put("accessSignature", returnVal.accessSignature);
+          $cookieStore.put("email", returnVal.email);
+          $cookieStore.put("password", returnVal.password);
+          $cookieStore.put("firstName", returnVal.firstName);
+          $cookieStore.put("lastName", returnVal.lastName);
+          $cookieStore.put("middleName", returnVal.middleName);
+          $cookieStore.put("nickname", returnVal.nickname);
+          $cookieStore.put("accessSignature", returnVal.accessSignature);
 
-            var fullLoc = $location.url();
-            var loc = fullLoc.indexOf("index.html");
-            $window.location.href = fullLoc.substring(0,loc) + 'loggedin.html';
-					}
-				}).
-				error(function(returnVal)
-				{
-					console.log("LOGIN DEVELOPER CALL FAILED");
-				});
-  		}
-  	}])
-  	.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieStore',
+          var fullLoc = $location.url();
+          var loc = fullLoc.indexOf("index.html");
+          $window.location.href = fullLoc.substring(0,loc) + 'loggedin.html';
+  			}
+  		}).
+  		error(function(returnVal)
+  		{
+  			console.log("LOGIN DEVELOPER CALL FAILED");
+  		});
+  	}
+  }]);
+SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieStore',
       function($scope, $http, $location, $window, $cookieStore) {
 	$scope.createDeveloper = function()
   		{
@@ -172,28 +171,32 @@ angular.module('dormCatApp.controllers', ['ngCookies']).
   					console.log("CREATE DEVELOPER CALL FAILED");
   				});
   		}
-  	}])
-    .controller('InfoGameCtrl', ['$scope',function($scope) {
-		var games = [
-			{
-				'name':'alex',
-				'url':'http://www.google.com',
-				'stat': 123
-			}, 
+  	}]);
 
-			{
-				'name':'bob',
-				'url':'http://www.google.com',
-				'stat': 999
-			}, 
 
-			{
-				'name':'chris',
-				'url':'http://www.google.com',
-				'stat': 321
-			}
-		]
+SMG.controller('MyGamesCtrl', ['$scope',function($scope) {
+  var games = [
+  {'name':'Cheat Game','url':'http://www.google.com','stat': 123},
+  {'name':'Texas Hodem','url':'http://www.google.com','stat': 999}, 
+  {'name':'Counter Strike','url':'http://www.google.com','stat': 321}]
+  $scope.games = games;
+}]);
 
-		$scope.games = games;
+SMG.controller('ConsoleCtrl', ['$scope',function($scope) {
+}]);
 
-	}]);
+SMG.controller('GetStartedCtrl', ['$scope',function($scope) {
+}]);
+
+SMG.controller('FAQCtrl', ['$scope',function($scope) {
+}]);
+
+SMG.controller('AccountCtrl', ['$scope',function($scope) {
+}]);
+
+SMG.controller('Logout', ['$scope',function($scope) {
+}]);
+
+SMG.controller('LogoutCtrl', ['$scope',function($scope) {
+}]);
+
