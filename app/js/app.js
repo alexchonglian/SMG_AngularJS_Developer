@@ -25,6 +25,8 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/faq', {templateUrl: 'partials/faq.html', controller: 'FAQCtrl'});
 
   $routeProvider.when('/account', {templateUrl: 'partials/account.html', controller: 'AccountCtrl'});
+  $routeProvider.when('/updateDetails', {templateUrl: 'partials/updateDetails.html', controller: 'UpdateDetailsCtrl'});
+  $routeProvider.when('/changePassword', {templateUrl: 'partials/changePassword.html', controller: 'ChangePasswordCtrl'});
   $routeProvider.when('/logout', {templateUrl: 'partials/logout.html', controller: 'LogoutCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
 }]);

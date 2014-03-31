@@ -1,27 +1,42 @@
-<h1>Account Page, reset password</h1><br>
-
-
+<div class='account'>
 	<form>
-		<table class='center'>
+		<table class='centerAccount'>
 			<tr>
-				<td class='right'>Email</td>
+				<td class='right'>Email:</td>
 				<td></td>
-				<td><input type='text'></td>
+				<td class='left' ng-bind-html='email'></td>
 			</tr>
 			<tr>
-				<td class='right'>New Password:</td>
+				<td class='right'>Developer Id:</td>
 				<td></td>
-				<td><input type='password'></td>
+				<td class='left' ng-bind-html='devId'></td>
 			</tr>
 			<tr>
-				<td class='right'>New Password:</td>
+				<td class='right'>First Name:</td>
 				<td></td>
-				<td><input type='password'></td>
+				<td class='left' ng-bind-html='firstName'></td>
 			</tr>
 			<tr>
+				<td class='right'>Middle Name:</td>
 				<td></td>
+				<td class='left' ng-bind-html='middleName'></td>
+			</tr>
+			<tr>
+				<td class='right'>Last Name:</td>
 				<td></td>
-				<td><button class='btn btn-embossed btn-inverse' ng-click='updateUserInfo()'>Save</button></td>
+				<td class='left' ng-bind-html='lastName'></td>
+			</tr>
+			<tr>
+				<td class='right'>Nickname:</td>
+				<td></td>
+				<td class='left' ng-bind-html='nickname'></td>
 			</tr>
 		</table>
+		<div>
+			<button class='btn btn-embossed btn-inverse' ng-click='updateDetails()'>Update Details</button>
+		</div>
+		<div>
+			<button class='btn btn-embossed btn-inverse' ng-click='changePassword()'>Change Password</button>
+		</div>
 	</form>
+</div>
