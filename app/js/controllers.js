@@ -187,23 +187,57 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
   	}]);
 
 
-SMG.controller('MyGamesCtrl', ['$scope',function($scope) {
-  $scope.formOpen = false;
+SMG.controller('MyGamesCtrl', 
+  ['$scope','$http','$window','$cookieStore', function 
+  ($scope,  $http,  $window,  $cookieStore) {
 
-  $scope.showFormForNewGame = function() {
-    $scope.formOpen = !$scope.formOpen;
-  }
-
-  $scope.cancelSubmission =function() {
     $scope.formOpen = false;
-  }
 
-  var games = [
-  {'name':'Cheat Game','url':'http://www.google.com','stat': 123},
-  {'name':'Texas Hodem','url':'http://www.google.com','stat': 999}, 
-  {'name':'Counter Strike','url':'http://www.google.com','stat': 321}]
+    $scope.showFormForNewGame = function() {
+      $scope.formOpen = !$scope.formOpen;
+    }
 
-  $scope.games = games;
+    $scope.cancelSubmission =function() {
+      $scope.formOpen = false;
+    }
+
+    $scope.submitGame = function() {
+
+      var gameInfo = { 
+        'developerId': 12312323,
+        'accessSignature': 412341314234,
+        'description': 'Game description',
+        'width': 100,
+        'height': 50,
+        'gameName': 'Game Name',
+        'url': 'http://www.cheatgame.com',
+        'hasTokens': false,
+        'pics':null
+      }
+      //frontend validation is ignore for the time being
+
+      $http({
+        method: 'POST',
+        url: "http://1-dot-smg-server.appspot.com/games/",
+        data: JSON.stringify(gameInfo), 
+        dataType: 'json', 
+        headers: { 'Content-Type': 'application/json' }
+      }).
+      success(function(response) {
+        $window.alert(response.error);
+        console.log(response.error);
+      }).
+      error(function() {
+
+      })
+    }
+
+    var games = [
+    {'name':'Cheat Game','url':'http://www.google.com','stat': 123},
+    {'name':'Texas Hodem','url':'http://www.google.com','stat': 999}, 
+    {'name':'Counter Strike','url':'http://www.google.com','stat': 321}]
+
+    $scope.games = games;
 
 
 }]);
