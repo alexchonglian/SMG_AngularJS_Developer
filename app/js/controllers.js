@@ -204,7 +204,9 @@ SMG.controller('MyGamesCtrl',
 
     $scope.editGame = function (index) {
       $scope.formOpen = true;
-      var thisgame = $scope.games[index];
+      var currentGame = $scope.games[index];
+      $window.alert(currentGame);
+      console.log(currentGame);
       
     }
 
