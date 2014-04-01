@@ -13,7 +13,7 @@
 
 			<tr ng-repeat="game in games">
 				<td><button class='btn btn-embossed btn-inverse' ng-click='editGame($index)'>Edit</button></td>
-				<td>{{game.name}}</td>
+				<td>{{game.gameName}}</td>
 				<td>{{game.url}}</td>
 				<td>{{game.stat}}</td>
 				<td><a href="#/dash">Dashboard</a></td>
@@ -33,7 +33,7 @@
 	</div>
 
 	<div>
-	<form ng-show='formOpen'>
+	<form ng-show='submitformOpen'>
 		<table class='center'>
 			<tr>
 				<td class='right'>gameName:</td>
@@ -67,7 +67,48 @@
 			</tr>
 		</table>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-click='submitGame()'>Submit Game</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='submitButton' ng-click='submitGame()'>Submit Game</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='cancelSubmission()'>Cancel</button>
+		</div>
+	</form>
+	</div>
+
+	<div>
+	<form ng-show='editformOpen'>
+		<table class='center'>
+			<tr>
+				<td class='right'>gameName:</td>
+				<td></td>
+				<td class='left'><input type='text' ng_model='editGameName'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>description:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='editDescription'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>URL:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='editUrl'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>width:</td>
+				<td></td>
+				<td class='left'><input type='text' value='800' ng-model='editWidth'></td>
+			</tr>
+			<tr>
+				<td class='right'>height:</td>
+				<td></td>
+				<td class='left'><input type='text' value='800' ng-model='editHeight'></td>
+			</tr>
+			<tr>
+				<td class='right'>hasToken:</td>
+				<td></td>
+				<td class='left'><input type='checkbox' ng-model='editHasToken'></td>
+			</tr>
+		</table>
+		<div>
+			<button class='btn btn-embossed btn-inverse' ng-click='updateGame()'>Update Game</button>
 			<button class='btn btn-embossed btn-inverse' ng-click='cancelSubmission()'>Cancel</button>
 		</div>
 	</form>

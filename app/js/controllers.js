@@ -188,25 +188,48 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
 
 
 SMG.controller('MyGamesCtrl', 
-  ['$scope','$http','$window','$cookieStore', function 
-  ($scope,  $http,  $window,  $cookieStore) {
+  ['$scope','$http','$window','$cookieStore','$route', function 
+  ($scope,  $http,  $window,  $cookieStore, $route) {
 
-    $scope.formOpen = false;
+    $scope.submitformOpen = false;
+    $scope.editFormOpen = false;
+    var gameList = new Array();
 
     $scope.showFormForNewGame = function() {
-      $scope.formOpen = !$scope.formOpen;
+      $scope.submitformOpen = !$scope.submitformOpen;
+      $scope.editFormOpen = false;
     }
 
-    $scope.cancelSubmission =function() {
-      $scope.formOpen = false;
+    $scope.cancelSubmitSubmission =function() {
+      $scope.submitformOpen = false;
+      $scope.editFormOpen = false;
     }
 
 
     $scope.editGame = function (index) {
-      $scope.formOpen = true;
+      $scope.cancelSubmitSubmission();
+      $scope.editformOpen = true;
       var currentGame = $scope.games[index];
       $window.alert(currentGame);
       console.log(currentGame);
+
+      /*var games = [
+      {'name':'Cheat Game','url':'http://cheatgame.appspot.com','stat': 123, 
+      'description':'Cheat Game', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]},
+      
+      {'name':'Texas Hodem','url':'http://texashodem.appspot.com','stat': 999,
+      'description':'Texas Hodem', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]},
+      
+      {'name':'Counter Strike','url':'http://counterstrike.appspot.com','stat': 321,
+      'description':'Counter Strike', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]}
+      ]*/
+
+      $scope.editGameName = currentGame.name;
+      $scope.editDescription = currentGame.description;
+      $scope.editUrl = currentGame.url;
+      $scope.editWidth = currentGame.width;
+      $scope.editHeight = currentGame.height;
+      $scope.editHasTokens = currentGame.hasTokens;
       
     }
 
@@ -215,8 +238,8 @@ SMG.controller('MyGamesCtrl',
       var access = $cookieStore.get("accessSignature")
 
       var gameInfo = {
-        'developerId':'4811482210500608',
-        'accessSignature':'c6a596638416612ce2a2fb975bcf8888',
+        'developerId':$cookieStore.get('devId'),
+        'accessSignature':$cookieStore.get('accessSignature'),
         'description':$scope.description,
         'width':$scope.width,
         'height':$scope.height,
@@ -234,15 +257,41 @@ SMG.controller('MyGamesCtrl',
         headers: { 'Content-Type': 'application/json' }
       }).
       success(function(response) {
-        $window.alert(response);
+        $window.alert('Game Created Successfully!');
 
         $scope.formOpen = false;
+        $route.reload();
       }).
       error(function(err) {
-        $window.alert(err);
+        $window.alert('You fail!');
 
       })
     }
+
+      $http({
+        method: 'GET',
+        url: "http://2-dot-smg-server.appspot.com/gameinfo/all?developerId="+$cookieStore.get('devId')+"&accessSignature="+$cookieStore.get('accessSignature'),
+        dataType: 'json', 
+        headers: { 'Content-Type': 'application/json' }
+      }).
+      success(function(response) {
+        /*for(i = 0; i < response.length(); i++)
+        {
+          currentGame = response[i];
+          gameList[i] = {'name':currentGame.gameName,
+                         'url' :currentGame.url,
+                         'stat':000,
+                         'description':currentGame.description,
+                         'width':currentGame.width,
+                         'height':currentGame.height,
+                         'hasTokens':false,
+                         'pic':[]};
+        }*/
+        $scope.games = response;
+      }).
+      error(function(err) {
+        $console.log("Failed to get Game Information");
+      })
 
     var games = [
     {'name':'Cheat Game','url':'http://cheatgame.appspot.com','stat': 123, 
@@ -252,10 +301,11 @@ SMG.controller('MyGamesCtrl',
     'description':'Texas Hodem', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]},
     
     {'name':'Counter Strike','url':'http://counterstrike.appspot.com','stat': 321,
-    'description':'Counter Strike', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]}
+    'description':'Counter Strike', 'width':'800', 'height':'800', 'hasTokens':true, 'pic':[]}
     ]
 
-    $scope.games = games;
+    //$scope.games = games;
+    //$scope.games = gameList;
 
 
 }]);
