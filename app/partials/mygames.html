@@ -12,7 +12,7 @@
 			</tr>
 
 			<tr ng-repeat="game in games">
-				<td><button class='btn btn-embossed btn-inverse' ng-click=''>Edit</button></td>
+				<td><button class='btn btn-embossed btn-inverse' ng-click='editGame($index)'>Edit</button></td>
 				<td>{{game.name}}</td>
 				<td>{{game.url}}</td>
 				<td>{{game.stat}}</td>
@@ -36,16 +36,6 @@
 	<form ng-show='formOpen'>
 		<table class='center'>
 			<tr>
-				<td class='right'>developerId:</td>
-				<td></td>
-				<td class='left'><input type='text' ng_model='developerId'>*</td>
-			</tr>
-			<tr>
-				<td class='right'>accessSignature:</td>
-				<td></td>
-				<td class='left'><input type='text' ng-model='accessSignature'>*</td>
-			</tr>
-			<tr>
 				<td class='right'>gameName:</td>
 				<td></td>
 				<td class='left'><input type='text' ng_model='gameName'>*</td>
@@ -58,17 +48,22 @@
 			<tr>
 				<td class='right'>URL:</td>
 				<td></td>
-				<td class='left'><input type='text' ng-model='width'>*</td>
+				<td class='left'><input type='text' ng-model='url'>*</td>
 			</tr>
 			<tr>
 				<td class='right'>width:</td>
 				<td></td>
-				<td class='left'><input type='text' ng-model='middleName'></td>
+				<td class='left'><input type='text' value='800' ng-model='width'></td>
 			</tr>
 			<tr>
 				<td class='right'>height:</td>
 				<td></td>
-				<td class='left'><input type='text' ng-model='lastName'></td>
+				<td class='left'><input type='text' value='800' ng-model='height'></td>
+			</tr>
+			<tr>
+				<td class='right'>hasToken:</td>
+				<td></td>
+				<td class='left'><input type='checkbox' ng-model='hasToken'></td>
 			</tr>
 		</table>
 		<div>

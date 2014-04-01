@@ -201,17 +201,26 @@ SMG.controller('MyGamesCtrl',
       $scope.formOpen = false;
     }
 
+
+    $scope.editGame = function (index) {
+      $scope.formOpen = true;
+      var thisgame = $scope.games[index];
+      
+    }
+
     $scope.submitGame = function() {
+      var devId = $cookieStore.get('devId')
+      var access = $cookieStore.get("accessSignature")
 
       var gameInfo = {
         'developerId':'4811482210500608',
         'accessSignature':'c6a596638416612ce2a2fb975bcf8888',
-        'description':'sdfasdhflsui',
-        'width':'800',
-        'height':'800',
-        'gameName':'newnewgame',
-        'url':'http://newnewgame.appspot.com',
-        'hasTokens':true
+        'description':$scope.description,
+        'width':$scope.width,
+        'height':$scope.height,
+        'gameName':$scope.gameName,
+        'url':$scope.url,
+        'hasTokens':$scope.hasTokens
       }
       //frontend validation is ignore for the time being
 
@@ -224,19 +233,25 @@ SMG.controller('MyGamesCtrl',
       }).
       success(function(response) {
         $window.alert(response);
-        console.log(response);
+
+        $scope.formOpen = false;
       }).
       error(function(err) {
         $window.alert(err);
-        console.log(err);
 
       })
     }
 
     var games = [
-    {'name':'Cheat Game','url':'http://www.google.com','stat': 123},
-    {'name':'Texas Hodem','url':'http://www.google.com','stat': 999}, 
-    {'name':'Counter Strike','url':'http://www.google.com','stat': 321}]
+    {'name':'Cheat Game','url':'http://cheatgame.appspot.com','stat': 123, 
+    'description':'Cheat Game', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]},
+    
+    {'name':'Texas Hodem','url':'http://texashodem.appspot.com','stat': 999,
+    'description':'Texas Hodem', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]},
+    
+    {'name':'Counter Strike','url':'http://counterstrike.appspot.com','stat': 321,
+    'description':'Counter Strike', 'width':'800', 'height':'800', 'hasTokens':false, 'pic':[]}
+    ]
 
     $scope.games = games;
 
