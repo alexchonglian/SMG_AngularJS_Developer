@@ -203,31 +203,32 @@ SMG.controller('MyGamesCtrl',
 
     $scope.submitGame = function() {
 
-      var gameInfo = { 
-        'developerId': 12312323,
-        'accessSignature': 412341314234,
-        'description': 'Game description',
-        'width': 100,
-        'height': 50,
-        'gameName': 'Game Name',
-        'url': 'http://www.cheatgame.com',
-        'hasTokens': false,
-        'pics':null
+      var gameInfo = {
+        'developerId':'4811482210500608',
+        'accessSignature':'c6a596638416612ce2a2fb975bcf8888',
+        'description':'sdfasdhflsui',
+        'width':'800',
+        'height':'800',
+        'gameName':'newnewgame',
+        'url':'http://newnewgame.appspot.com',
+        'hasTokens':true
       }
       //frontend validation is ignore for the time being
 
       $http({
         method: 'POST',
-        url: "http://1-dot-smg-server.appspot.com/games/",
+        url: "http://2-dot-smg-server.appspot.com/games",
         data: JSON.stringify(gameInfo), 
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
       }).
       success(function(response) {
-        $window.alert(response.error);
-        console.log(response.error);
+        $window.alert(response);
+        console.log(response);
       }).
-      error(function() {
+      error(function(err) {
+        $window.alert(err);
+        console.log(err);
 
       })
     }
