@@ -22,13 +22,60 @@
 
 			<tr>
 				<td><button class='btn btn-embossed btn-inverse' ng-click='showFormForNewGame()'>New</button></td>
-				<td><input type='text' value='Game Name'></td>
-				<td><input type='text' value='Game URL'></td>
+				<td></td>
+				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 		</table>
+
+	</div>
+
+	<div>
+	<form ng-show='formOpen'>
+		<table class='center'>
+			<tr>
+				<td class='right'>developerId:</td>
+				<td></td>
+				<td class='left'><input type='text' ng_model='developerId'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>accessSignature:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='accessSignature'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>gameName:</td>
+				<td></td>
+				<td class='left'><input type='text' ng_model='gameName'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>description:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='description'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>URL:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='width'>*</td>
+			</tr>
+			<tr>
+				<td class='right'>width:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='middleName'></td>
+			</tr>
+			<tr>
+				<td class='right'>height:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='lastName'></td>
+			</tr>
+		</table>
+		<div>
+			<button class='btn btn-embossed btn-inverse' ng-click='submitGame()'>Submit Game</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='cancelSubmission()'>Cancel</button>
+		</div>
+	</form>
 	</div>
 	
 </div>

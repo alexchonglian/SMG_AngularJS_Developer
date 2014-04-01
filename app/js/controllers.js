@@ -3,6 +3,8 @@
 /* Controllers */
 
 var SMG = angular.module('SMGDevApp.controllers', ['ngCookies', 'ngSanitize']);
+
+
 SMG.controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStore',
   function($scope, $http, $location, $window, $cookieStore) {
     $scope.submitLogin = function()
@@ -186,12 +188,28 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
 
 
 SMG.controller('MyGamesCtrl', ['$scope',function($scope) {
+  $scope.formOpen = false;
+
+  $scope.showFormForNewGame = function() {
+    $scope.formOpen = !$scope.formOpen;
+  }
+
+  $scope.cancelSubmission =function() {
+    $scope.formOpen = false;
+  }
+
   var games = [
   {'name':'Cheat Game','url':'http://www.google.com','stat': 123},
   {'name':'Texas Hodem','url':'http://www.google.com','stat': 999}, 
   {'name':'Counter Strike','url':'http://www.google.com','stat': 321}]
+
   $scope.games = games;
+
+
 }]);
+
+
+
 
 SMG.controller('ConsoleCtrl', ['$scope',function($scope) {
 }]);
