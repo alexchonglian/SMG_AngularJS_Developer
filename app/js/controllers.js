@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var SMG = angular.module('dormCatApp.controllers', ['ngCookies', 'ngSanitize']);
+var SMG = angular.module('SMGDevApp.controllers', ['ngCookies', 'ngSanitize']);
 SMG.controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStore',
   function($scope, $http, $location, $window, $cookieStore) {
     $scope.submitLogin = function()
@@ -447,5 +447,9 @@ SMG.controller('LogoutCtrl', ['$scope','$location','$window','$cookieStore',
   $window.location.href = fullLoc.substring(0,loc) + 'loggedin.html';
   };
 
+}]);
+
+SMG.controller("DashCtrl",['$scope',function(){
+        
 }]);
 

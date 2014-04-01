@@ -1,8 +1,96 @@
 <div>
-	<h1>this is the dashboard</h1>
-	<ul ng-repeat="stat in stats">
-		<li>{{dash.stat3}}</li>
-		<li>{{dash.stat2}}</li>
-		<li>{{dash.stat1}}</li>
-	</ul>
+	<script type="text/javascript-lazy">
+            var gaugechart = AmCharts.makeChart("gaugechartdiv", {
+                type: "gauge",
+                titles: [{
+                    "text": "Players online",
+                    "size": 15
+                }],
+                axes: [{
+                    startValue: 0,
+                    axisThickness: 2,
+                    endValue: 220,
+                    valueInterval: 10,
+                    bottomTextYOffset: -20,
+                    bottomText: "0",
+                    bands: [{
+                            startValue: 0,
+                            endValue: 90,
+                            color: "#00CC00"
+                        },
+
+                        {
+                            startValue: 90,
+                            endValue: 130,
+                            color: "#ffac29"
+                        },
+
+                        {
+                            startValue: 130,
+                            endValue: 220,
+                            color: "#ea3838",
+                            innerRadius: "80%"
+                        }
+                    ]
+                }],
+
+                arrows: [{}]
+            });
+
+            setInterval(randomValue, 2000);
+             // set random value
+            function randomValue() {
+                var value = Math.round(Math.random() * 200);
+                gaugechart.arrows[0].setValue(value);
+                gaugechart.axes[0].setBottomText(value);
+            }
+
+            var chart = AmCharts.makeChart("radarchartdiv", {
+                type: "radar",
+                dataProvider: [{
+                    "cat": "Graphics",
+                        "litres": 156.9
+                }, {
+                    "cat": "Fun",
+                        "litres": 131.1
+                }, {
+                    "cat": "Easiness",
+                        "litres": 115.8
+                }, {
+                    "cat": "Acoustics",
+                        "litres": 109.9
+                }, {
+                    "cat": "Addictiveness",
+                        "litres": 108.3
+                }, {
+                    "cat": "Awesomeness",
+                        "litres": 99
+                }],
+            
+            
+                categoryField: "cat",
+                startDuration: 2,
+            
+            
+                valueAxes: [{
+                    axisAlpha: 0.15,
+                    minimum: 0,
+                    dashLength: 3,
+                    axisTitleOffset: 20,
+                    gridCount: 5
+                }],
+            
+                graphs: [{
+            
+                    valueField: "litres",
+            
+                    bullet: "round",
+                    balloonText: "[[value]] litres of beer per year"
+                }]
+            
+            });
+
+    </script>
+    <div id="gaugechartdiv" style="width:380px; height:380px;"></div>
+    <div id="radarchartdiv" style="width:380px; height:380px;"></div>
 </div>

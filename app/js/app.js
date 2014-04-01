@@ -2,14 +2,14 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('dormCatApp', [
+var devApp = angular.module('SMGDevApp', [
   'ngRoute',
   'ngAnimate',
   'ngCookies',
-  'dormCatApp.filters',
-  'dormCatApp.services',
-  'dormCatApp.directives',
-  'dormCatApp.controllers'
+  'SMGDevApp.filters',
+  'SMGDevApp.services',
+  'SMGDevApp.directives',
+  'SMGDevApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
@@ -17,7 +17,6 @@ config(['$routeProvider', function($routeProvider) {
 
   $routeProvider.when('/dash', {templateUrl: 'partials/dash.html', controller: 'DashCtrl'});
   $routeProvider.when('/bugs', {templateUrl: 'partials/bugs.html', controller: 'BugsCtrl'});
-
   
   $routeProvider.when('/mygames', {templateUrl: 'partials/mygames.html', controller: 'MyGamesCtrl'});
   $routeProvider.when('/console', {templateUrl: 'partials/console.html', controller: 'ConsoleCtrl'});
@@ -30,3 +29,4 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/logout', {templateUrl: 'partials/logout.html', controller: 'LogoutCtrl'});
   $routeProvider.otherwise({redirectTo: '/'});
 }]);
+
