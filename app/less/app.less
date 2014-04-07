@@ -1,12 +1,23 @@
 @wetasphalt:#34495e;
+@pinkish:#f3f3f4;
+@purple:#525263;
 @font-face{
     font-family:'linkfont';
     src:url('less/fonts/Franchise-Bold.ttf');
 }
 
+.blackboard
+{
+    background: #282828 url('http://www.amcharts.com/lib/3/patterns/chalk/bg.jpg');color: #fff;   
+}
+
 * {
 margin: 0;
 padding: 0;
+}
+
+body{
+ background-color:@pinkish;
 }
 
 .shadow {
@@ -16,7 +27,7 @@ padding: 0;
 }
 
 #header{
-	background-color: @wetasphalt;
+	background-color: @purple;
 	font-family:linkfont;
 	font-size: 20px;
     overflow:auto;
@@ -119,10 +130,19 @@ padding: 0;
 {
   float:left;
   margin-left:100px;
+  border-radius:10px;
+  color:white;
 }
 
 #radarchartdiv
 {
   float:right;
   margin-right:100px;
+  border-radius:10px;
+}
+
+.dash
+{
+ .blackboard;
+ overflow:auto;
 }

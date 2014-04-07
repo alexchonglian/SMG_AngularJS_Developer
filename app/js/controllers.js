@@ -1,4 +1,5 @@
 'use strict';
+//6210258569527296 developer id
 
 /* Controllers */
 
@@ -258,7 +259,7 @@ SMG.controller('MyGamesCtrl',
       }).
       success(function(response) {
         $window.alert('Game Created Successfully!');
-
+        console.log(response);
         $scope.formOpen = false;
         $route.reload();
       }).
