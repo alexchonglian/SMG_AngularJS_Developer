@@ -96,14 +96,22 @@
             setGaugeVal(gaugechart2,this.gameStats.rating);
     </script>
     <table>
-        <td>
-            <div id="gaugechartdiv1" style="width:300px; height:300px;" ></div>
-        </td>
-        <td>
-            <div id="gaugechartdiv3" style="width:300px; height:300px;"></div>
-        </td>
-        <td>
-            <div id="gaugechartdiv2" style="width:300px; height:300px;"></div>
-        </td>
+        <tr>
+            <td>
+                <div id="gaugechartdiv1" style="width:300px; height:300px;" ></div>
+            </td>
+            <td>
+                <div id="gaugechartdiv3" style="width:300px; height:300px;"></div>
+            </td>
+            <td>
+                <div id="gaugechartdiv2" style="width:300px; height:300px;"></div>
+            </td>
+        </tr>
+        
     </table>
+    <div class="chalkboard">
+        <span>Current Number of Players: {{gameStats.currentGames.length}} </span><br>
+        <span>Historical Number of Players: {{gameStats.finishedGames.length}} </span><br>
+        <span>Best Player (id): {{gameStats.highScore.playerId}} </span>
+    </div>
 </div>
