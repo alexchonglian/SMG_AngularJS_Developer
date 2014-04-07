@@ -13,10 +13,12 @@ angular.module('SMGDevApp.directives', []).
       restrict: 'E',
       scope: false,
       link: function(scope, elem, attr) {
+        console.log("scope");
+        console.log(scope);
         if (attr.type === 'text/javascript-lazy') {
           var code = elem.text();
           var f = new Function(code);
-          f();
+          f.call(scope);
         }
       }
     };

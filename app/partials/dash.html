@@ -1,10 +1,16 @@
 <div class="dash">
 	<script type="text/javascript-lazy">
-            var gaugechart = AmCharts.makeChart("gaugechartdiv", {
+            console.log(this.gameStats);
+            function setGaugeVal(gaugechart,value){
+                gaugechart.arrows[0].setValue(value);
+                gaugechart.axes[0].setBottomText(value);
+            };
+
+            var gaugechart = AmCharts.makeChart("gaugechartdiv1", {
                 "type": "gauge",
                 "theme": "chalk", 
                 "titles": [{
-                    "text": "Players online",
+                    "text": "Total Number of Plays",
                     "size":20
                 }],    
                 "axes": [{
@@ -32,137 +38,72 @@
                 }],
                 "arrows": [{}]
             });
-
-            setInterval(randomValue, 2000);
-             // set random value
-            function randomValue() {
-                var value = Math.round(Math.random() * 200);
-                gaugechart.arrows[0].setValue(value);
-                gaugechart.axes[0].setBottomText(value);
-            }
-
-            var chart = AmCharts.makeChart("radarchartdiv", {
-                type: "radar",
-                "theme": "chalk",
-                dataProvider: [{
-                    "cat": "Graphics",
-                        "litres": 156.9
-                }, {
-                    "cat": "Design",
-                        "litres": 131.1
-                }, {
-                    "cat": "Easiness",
-                        "litres": 115.8
-                }, {
-                    "cat": "Acoustics",
-                        "litres": 109.9
-                }, {
-                    "cat": "ppl",
-                        "litres": 108.3
-                }, {
-                    "cat": "Fun",
-                        "litres": 99
+            
+             var gaugechart2 = AmCharts.makeChart("gaugechartdiv2", {
+                "type": "gauge",
+                "theme": "chalk", 
+                "titles": [{
+                    "text": "Rating",
+                    "size":20
+                }],    
+                "axes": [{
+                    "axisThickness":1,
+                     "axisAlpha":0.2,
+                     "tickAlpha":0.2,
+                     "valueInterval":0.5,
+                    "bands": [{
+                        "color": "#84b761",
+                        "endValue": 3,
+                        "startValue": 0
+                    }, {
+                        "color": "#fdd400",
+                        "endValue": 4,
+                        "startValue": 3
+                    }, {
+                        "color": "#cc4748",
+                        "endValue": 5,
+                        "innerRadius": "95%",
+                        "startValue": 4
+                    }],
+                    "bottomText": "0 km/h",
+                    "bottomTextYOffset": -1,
+                    "endValue": 5
                 }],
-            
-                categoryField: "cat",
-                startDuration: 2,      
-                valueAxes: [{
-                    axisAlpha: 0.15,
-                    minimum: 0,
-                    dashLength: 3,
-                    axisTitleOffset: 20,
-                    gridCount: 5
-                }],
-            
-                graphs: [{
-            
-                    valueField: "litres",
-            
-                    bullet: "round",
-                    balloonText: "[[value]] litres of beer per year"
-                }]
-            
+                "arrows": [{}]
             });
-            
-
-            var chart = AmCharts.makeChart("colchartdiv", {
-                "type": "serial",
-                "theme": "chalk",
-                "dataProvider": [{
-                    "country": "USA",
-                    "visits": 2025
-                }, {
-                    "country": "China",
-                    "visits": 1882
-                }, {
-                    "country": "Japan",
-                    "visits": 1809
-                }, {
-                    "country": "Germany",
-                    "visits": 1322
-                }, {
-                    "country": "UK",
-                    "visits": 1122
-                }, {
-                    "country": "France",
-                    "visits": 1114
-                }, {
-                    "country": "India",
-                    "visits": 984
-                }, {
-                    "country": "Spain",
-                    "visits": 711
-                }, {
-                    "country": "Netherlands",
-                    "visits": 665
-                }, {
-                    "country": "Russia",
-                    "visits": 580
-                }, {
-                    "country": "South Korea",
-                    "visits": 443
-                }, {
-                    "country": "Canada",
-                    "visits": 441
-                }, {
-                    "country": "Brazil",
-                    "visits": 395
+    
+            var gaugechart3 = AmCharts.makeChart("gaugechartdiv3", {
+                "type": "gauge",
+                "theme": "chalk", 
+                "titles": [{
+                    "text": "High Score",
+                    "size":20
+                }],    
+                "axes": [{
+                    "axisThickness":1,
+                     "axisAlpha":0.2,
+                     "tickAlpha":0.2,
+                     "valueInterval":100,
+                    "bottomText": "0 km/h",
+                    "bottomTextYOffset": -1,
+                    "endValue": 1000
                 }],
-                "valueAxes": [{
-                    "gridColor":"#FFFFFF",
-                    "gridAlpha": 0.2,
-                    "dashLength": 0
-                }],
-                "gridAboveGraphs": true,
-                "startDuration": 1,
-                "graphs": [{
-                    "balloonText": "[[category]]: <b>[[value]]</b>",
-                    "fillAlphas": 0.8,
-                    "lineAlpha": 0.2,
-                    "type": "column",
-                    "valueField": "visits"      
-                }],
-                "chartCursor": {
-                    "categoryBalloonEnabled": false,
-                    "cursorAlpha": 0,
-                    "zoomable": false
-                },
-                "categoryField": "country",
-                "categoryAxis": {
-                    "gridPosition": "start",
-                    "gridAlpha": 0
-                },
-                "exportConfig":{
-                  "menuTop": 0,
-                  "menuItems": [{
-                  "icon": '/lib/3/images/export.png',
-                  "format": 'png'     
-                  }]  
-                }
+                "arrows": [{}]
             });
 
+            setGaugeVal(gaugechart,this.gameStats.currentGames.length+ this.gameStats.finishedGames.length);
+            setGaugeVal(gaugechart3,this.gameStats.highScore.score);
+            setGaugeVal(gaugechart2,this.gameStats.rating);
     </script>
-    <div id="gaugechartdiv" style="width:300px; height:300px;"></div>
-    <div id="radarchartdiv" style="width:300px; height:300px;"></div>
-    <div id="colchartdiv" style="width:300px; height:300px;"></div>
+    <table>
+        <td>
+            <div id="gaugechartdiv1" style="width:300px; height:300px;" ></div>
+        </td>
+        <td>
+            <div id="gaugechartdiv3" style="width:300px; height:300px;"></div>
+        </td>
+        <td>
+            <div id="gaugechartdiv2" style="width:300px; height:300px;"></div>
+        </td>
+    </table>
 </div>

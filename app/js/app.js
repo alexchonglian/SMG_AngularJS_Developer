@@ -15,7 +15,7 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginCtrl'});
   $routeProvider.when('/signup', {templateUrl: 'partials/signup.html', controller: 'SignupCtrl'});
 
-  $routeProvider.when('/dash', {templateUrl: 'partials/dash.html', controller: 'DashCtrl'});
+  $routeProvider.when('/dash/:gameId', {templateUrl: 'partials/dash.html', controller: 'DashCtrl'});
   $routeProvider.when('/bugs', {templateUrl: 'partials/bugs.html', controller: 'BugsCtrl'});
   
   $routeProvider.when('/mygames', {templateUrl: 'partials/mygames.html', controller: 'MyGamesCtrl'});

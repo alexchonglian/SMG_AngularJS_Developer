@@ -1,4 +1,5 @@
 'use strict';
+//6210258569527296 developer id
 
 /* Controllers */
 
@@ -305,6 +306,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
       }
 
       console.log(pics);
+
       if(pics != {})
         gameInfo.pics = pics;
 
@@ -317,6 +319,13 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
       }).
+<<<<<<< HEAD
+      success(function(response) {
+        $window.alert('Game Created Successfully!');
+        console.log(response);
+        $scope.formOpen = false;
+        $route.reload();
+=======
       success(function(returnVal) {
         if(returnVal.error == "WRONG_ACCESS_SIGNATURE")
         {
@@ -333,9 +342,9 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
         else
         {
           $window.alert('Game Created Successfully!');
-          console.log(returnVal.gameId);
           $route.reload();
         }
+>>>>>>> a2807123257a8641dbd8a794811698e1034a90b2
       }).
       error(function(err) {
         $window.alert('You fail!');
@@ -699,93 +708,7 @@ SMG.controller('LogoutCtrl', ['$scope','$location','$window','$cookieStore',
 
 }]);
 
-SMG.controller("DashCtrl",['$routeParams','$http','$scope',function($routeParams,$http,$scope){
-    this.$routeParams = $routeParams;
- /*   $http({
-            method: 'GET',
-            url: "http://2-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
-            dataType: 'json'
-    }).success(function(returnVal)
-          {
-            if(returnVal.error == "WRONG_GAME_ID")
-            {
-              $window.alert("Invalid Game ID ! Naughty uh ?");
-            }
-            else
-            {
-              console.log("return val gameId");
-              console.log($routeParams.gameId);
-              console.log(returnVal);
-            }
-         }).error(function(returnVal)
-            {
-              console.log("Game Info Retrieval failed");
-            }); */
-
-      var gameStats = {
-            "highScore":{
-              "playerId":"979887675876",
-              "score":98
-            },
-            "rating":3.5965,
-            "currentGames":[
-                {
-                  "players":[{
-                              "firstName":"Bob",
-                              "nickname":"Ninja"
-                            },{
-                              "firstName":"Jane",
-                              "nickname":"Ninja Reborn"
-                            }]
-                },
-                {
-                  "players":[{
-                              "firstName":"Jeremy",
-                              "nickname":"King of Ninja"
-                            },{
-                              "firstName":"John",
-                              "nickname":"Crazy Banana"
-                            }]
-
-                }
-            ],
-            "finishedGames": [
-              {
-                "players": [
-                        {
-                           "firstName": "Bob",
-                           "nickname": "Ninja",
-                           "score": 43543, //int
-                           "tokens": 2394384 // (for games that have tokens)
-                        },
-                        {
-                           "firstName": "Jane",
-                           "nickname": "Ninja",
-                           "score": 9845, //int,
-                           "tokens": 39843 //int  // (for games that have tokens)
-                        }
-                      ]
-              },
-              {
-                "players":[
-                            {
-                               "firstName": "Bobby",
-                               "nickname": "Ninja Baby",
-                               "score": 9080, //int
-                               "tokens": 978098 // (for games that have tokens)
-                            },
-                            {
-                               "firstName": "Jason",
-                               "nickname": "Ninja Handson",
-                               "score": 988786, //int,
-                               "tokens": 998786 //int  // (for games that have tokens)
-                            }
-                          ] 
-              }]
-        };
-        console.log("game Stats");
-        console.log(gameStats);
-        $scope.gameStats = gameStats;
-        console.log($scope);
-}]); 
+SMG.controller("DashCtrl",['$scope',function(){
+        
+}]);
 
