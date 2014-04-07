@@ -36,12 +36,12 @@
 	<form ng-show='submitformOpen'>
 		<table class='center'>
 			<tr>
-				<td class='right'>gameName:</td>
+				<td class='right'>Game Name:</td>
 				<td></td>
 				<td class='left'><input type='text' ng_model='gameName'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>description:</td>
+				<td class='right'>Description:</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='description'>*</td>
 			</tr>
@@ -51,24 +51,37 @@
 				<td class='left'><input type='text' ng-model='url'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>width:</td>
+				<td class='right'>Width:</td>
 				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='width'></td>
+				<td class='left'><input type='text' value='800' ng-model='width'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>height:</td>
+				<td class='right'>Height:</td>
 				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='height'></td>
+				<td class='left'><input type='text' value='800' ng-model='height'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>hasToken:</td>
+				<td class='right'>Has Tokens:</td>
 				<td></td>
 				<td class='left'><input type='checkbox' ng-model='hasToken'></td>
 			</tr>
+			<tr>
+				<td class='right'>Icon:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='icon'></td>
+			</tr>
+			<tr ng-repeat="SS in SSs">
+				<td class='right'><button ng-model='clearSS' ng-click='clearSS($index)'>&#10006</button></td>
+				<td></td>
+				<td>{{SS}}</td>
+			</tr>
 		</table>
 		<div>
+			<button class='btn btn-embossed btn-inverse' ng-model='addScreenShot' ng-click='addScreenShot()'>Add Screen Shot</button>
+		</div>
+		<div>
 			<button class='btn btn-embossed btn-inverse' ng-model='submitButton' ng-click='submitGame()'>Submit Game</button>
-			<button class='btn btn-embossed btn-inverse' ng-click='cancelSubmission()'>Cancel</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='cancelSubmitButton' ng-click='closeAllForms()'>Cancel</button>
 		</div>
 	</form>
 	</div>
@@ -77,12 +90,12 @@
 	<form ng-show='editformOpen'>
 		<table class='center'>
 			<tr>
-				<td class='right'>gameName:</td>
+				<td class='right'>Game Name:</td>
 				<td></td>
 				<td class='left'><input type='text' ng_model='editGameName'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>description:</td>
+				<td class='right'>Description:</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='editDescription'>*</td>
 			</tr>
@@ -92,26 +105,83 @@
 				<td class='left'><input type='text' ng-model='editUrl'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>width:</td>
+				<td class='right'>Width:</td>
 				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='editWidth'></td>
+				<td class='left'><input type='text' value='800' ng-model='editWidth'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>height:</td>
+				<td class='right'>Height:</td>
 				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='editHeight'></td>
+				<td class='left'><input type='text' value='800' ng-model='editHeight'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>hasToken:</td>
+				<td class='right'>Has Tokens:</td>
 				<td></td>
 				<td class='left'><input type='checkbox' ng-model='editHasToken'></td>
 			</tr>
+			<tr>
+				<td class='right'>Icon:</td>
+				<td></td>
+				<td class='left'><input type='text' ng-model='editIcon'></td>
+			</tr>
+			<tr ng-repeat="editSS in editSSs">
+				<td class='right'><button ng-model='editClearSS' ng-click='editClearSS($index)'>&#10006</button></td>
+				<td></td>
+				<td>{{editSS}}</td>
+			</tr>
 		</table>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-click='updateGame()'>Update Game</button>
-			<button class='btn btn-embossed btn-inverse' ng-click='cancelSubmission()'>Cancel</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='editAddScreenShot' ng-click='editAddScreenShot()'>Add Screen Shot</button>
+		</div>
+		<div>
+			<button class='btn btn-embossed btn-inverse' ng-model='updateGameButton' ng-click='updateGame()'>Update Game</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='editCancelButton' ng-click='closeAllForms()'>Cancel</button>
 		</div>
 	</form>
 	</div>
+
+	<div ng-show='SSpopup' class="modal-dialog">
+	    <div class="modal-content">
+	   		<div class="modal-header">
+	      		<button type="button" class="close" ng-click="cancel()">&times;</button>
+	      		<h4 class="modal-title">Add Screen Shot</h4>
+	    	</div>
+	    	<div class="modal-body">
+				<table class='center'>
+					<tr>
+						<td class='right'>Screen Shot:</td>
+						<td></td>
+						<td class='left'><input type='text' ng_model='screenShot'></td>
+					</tr>
+				</table>
+	    	</div>
+	    	<div class="modal-footer">
+	      		<button type="button" class="btn btn-default" ng-click="addSS()">Add</button>
+	      		<button type="button" class="btn btn-primary" ng-click="cancelSS()">Cancel</button>
+	    	</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+
+	<div ng-show='editSSpopup' class="modal-dialog">
+	    <div class="modal-content">
+	   		<div class="modal-header">
+	      		<button type="button" class="close" ng-click="cancel()">&times;</button>
+	      		<h4 class="modal-title">Add Screen Shot</h4>
+	    	</div>
+	    	<div class="modal-body">
+				<table class='center'>
+					<tr>
+						<td class='right'>Screen Shot:</td>
+						<td></td>
+						<td class='left'><input type='text' ng_model='editScreenShot'></td>
+					</tr>
+				</table>
+	    	</div>
+	    	<div class="modal-footer">
+	      		<button type="button" class="btn btn-default" ng-click="editAddSS()">Add</button>
+	      		<button type="button" class="btn btn-primary" ng-click="editCancelSS()">Cancel</button>
+	    	</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
 	
 </div>
