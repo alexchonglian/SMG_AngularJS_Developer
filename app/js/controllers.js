@@ -11,7 +11,7 @@ SMG.controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStor
   	{
   		$http({
   			method: 'GET',
-  			url: "http://2-dot-smg-server.appspot.com/developers/"+$scope.devId+"?password="+$scope.password
+  			url: "http://3-dot-smg-server.appspot.com/developers/"+$scope.devId+"?password="+$scope.password
   			}).
   		success(function(returnVal)
   		{
@@ -102,7 +102,7 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
 
 			$http({
 				method: 'POST',
-				url: "http://2-dot-smg-server.appspot.com/developers/",
+				url: "http://3-dot-smg-server.appspot.com/developers/",
 				data: JSON.stringify(jsonData),
 				dataType: 'json',
 				headers: {
@@ -131,7 +131,7 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
 
             $http({
               method: 'GET',
-              url: "http://2-dot-smg-server.appspot.com/developers/"+returnVal.developerId+"?password="+jsonData.password
+              url: "http://3-dot-smg-server.appspot.com/developers/"+returnVal.developerId+"?password="+jsonData.password
               }).
             success(function(returnVal2)
             {
@@ -213,7 +213,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
     }
 
     $scope.editAddScreenShot = function() {
-      $scope.closeAllForms;
+      $scope.closeAllForms();
       $scope.editSSpopup = true;
     }
 
@@ -261,7 +261,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
     $scope.yesDeleteGame = function() {
       $http({
         method: 'DELETE',
-        url: "http://2-dot-smg-server.appspot.com/games/" + currentGame.gameId + "?developerId=" + $cookieStore.get('devId')
+        url: "http://3-dot-smg-server.appspot.com/games/" + currentGame.gameId + "?developerId=" + $cookieStore.get('devId')
                                                           + "&accessSignature=" + $cookieStore.get('accessSignature'),
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
@@ -298,7 +298,6 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
       $scope.closeAllForms();
       $scope.editformOpen = true;
       currentGame = $scope.games[index];
-      console.log(JSON.stringify(currentGame));
       console.log(currentGame);
 
       $scope.editGameName = currentGame.gameName;
@@ -308,12 +307,16 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
       $scope.editHeight = currentGame.height;
       $scope.editHasTokens = currentGame.hasTokens;
 
-      if(currentGame.pics != {} && currentGame.pics != undefined)
+      var pics = currentGame.pics;
+
+      console.log(pics);
+
+      if(pics != {} && pics != undefined)
       {
-        if(currentGame.pics.icon != "" && currentGame.pics.icon != undefined)
-          $scope.editInfo = currentGame.pics.icon;
+        if(pics.icon != "" && pics.icon != undefined)
+          $scope.editIcon = pics.icon;
         if(currentGame.pics.screenshots != [] && currentGame.pics.screenshots != undefined)
-          $scope.editSSs = currentGame.pics.screenshots;
+          $scope.editSSs = pics.screenshots;
       }
       
     }
@@ -353,7 +356,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
 
       $http({
         method: 'POST',
-        url: "http://2-dot-smg-server.appspot.com/games",
+        url: "http://3-dot-smg-server.appspot.com/games",
         data: JSON.stringify(gameInfo), 
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
@@ -420,7 +423,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
 
       $http({
         method: 'PUT',
-        url: "http://2-dot-smg-server.appspot.com/games/" + currentGame.gameId,
+        url: "http://3-dot-smg-server.appspot.com/games/" + currentGame.gameId,
         data: JSON.stringify(gameInfo), 
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
@@ -456,7 +459,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
 
     $http({
       method: 'GET',
-      url: "http://2-dot-smg-server.appspot.com/gameinfo/all?developerId="+$cookieStore.get('devId')+"&accessSignature="+$cookieStore.get('accessSignature'),
+      url: "http://3-dot-smg-server.appspot.com/gameinfo/all?developerId="+$cookieStore.get('devId')+"&accessSignature="+$cookieStore.get('accessSignature'),
       dataType: 'json', 
       headers: { 'Content-Type': 'application/json' }
     }).
@@ -539,7 +542,7 @@ SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window','$http',
   $scope.yesDeleteAccount = function () {
     $http({
       method: 'DELETE',
-      url: "http://2-dot-smg-server.appspot.com/developers/" + $cookieStore.get('devId') + "?accessSignature=" + $cookieStore.get('accessSignature'),
+      url: "http://3-dot-smg-server.appspot.com/developers/" + $cookieStore.get('devId') + "?accessSignature=" + $cookieStore.get('accessSignature'),
       dataType: 'json',
       headers: {
         'Content-Type': 'application/json'
@@ -635,7 +638,7 @@ SMG.controller('UpdateDetailsCtrl', ['$scope','$http','$window','$cookieStore',
 
     $http({
       method: 'PUT',
-      url: "http://2-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
+      url: "http://3-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
       data: JSON.stringify(jsonData),
       dataType: 'json',
       headers: {
@@ -660,7 +663,7 @@ SMG.controller('UpdateDetailsCtrl', ['$scope','$http','$window','$cookieStore',
       {
         $http({
           method: 'GET',
-          url: "http://2-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId")+"?accessSignature="+$cookieStore.get("accessSignature")
+          url: "http://3-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId")+"?accessSignature="+$cookieStore.get("accessSignature")
           }).
         success(function(returnVal)
         {
@@ -736,7 +739,7 @@ SMG.controller('ChangePasswordCtrl', ['$scope','$http','$window','$cookieStore',
         {
           $http({
             method: 'PUT',
-            url: "http://2-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
+            url: "http://3-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
             data: JSON.stringify(jsonData),
             dataType: 'json',
             headers: {
@@ -808,7 +811,7 @@ SMG.controller("DashCtrl",['$routeParams','$http','$scope',
     $scope.retrieveGameStat = function() {
       $http({
         method: 'GET',
-        url: "http://2-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
+        url: "http://3-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
         dataType: 'json',
         headers: { 'Content-Type': 'application/json' }
       }).success(function(returnVal) {
@@ -821,7 +824,7 @@ SMG.controller("DashCtrl",['$routeParams','$http','$scope',
 
     $http({
             method: 'GET',
-            url: "http://2-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
+            url: "http://3-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
             dataType: 'json'
     }).success(function(returnVal)
           {
