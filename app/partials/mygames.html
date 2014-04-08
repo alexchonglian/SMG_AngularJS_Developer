@@ -38,7 +38,7 @@
 			<tr>
 				<td class='right'>Game Name:</td>
 				<td></td>
-				<td class='left'><input type='text' ng_model='gameName'>*</td>
+				<td class='left'><input type='text' ng-model='gameName'>*</td>
 			</tr>
 			<tr>
 				<td class='right'>Description:</td>
@@ -92,7 +92,7 @@
 			<tr>
 				<td class='right'>Game Name:</td>
 				<td></td>
-				<td class='left'><input type='text' ng_model='editGameName'>*</td>
+				<td class='left'><input type='text' ng-model='editGameName'>*</td>
 			</tr>
 			<tr>
 				<td class='right'>Description:</td>
@@ -137,6 +137,9 @@
 			<button class='btn btn-embossed btn-inverse' ng-model='updateGameButton' ng-click='updateGame()'>Update Game</button>
 			<button class='btn btn-embossed btn-inverse' ng-model='editCancelButton' ng-click='closeAllForms()'>Cancel</button>
 		</div>
+		<div>
+			<button class='btn btn-embossed btn-inverse' ng-model='deleteGame' ng-click='deleteGame()'>Delete Game</button>
+		</div>
 	</form>
 	</div>
 
@@ -151,7 +154,7 @@
 					<tr>
 						<td class='right'>Screen Shot:</td>
 						<td></td>
-						<td class='left'><input type='text' ng_model='screenShot'></td>
+						<td class='left'><input type='text' ng-model='screenShot'></td>
 					</tr>
 				</table>
 	    	</div>
@@ -173,7 +176,7 @@
 					<tr>
 						<td class='right'>Screen Shot:</td>
 						<td></td>
-						<td class='left'><input type='text' ng_model='editScreenShot'></td>
+						<td class='left'><input type='text' ng-model='editScreenShot'></td>
 					</tr>
 				</table>
 	    	</div>
@@ -181,6 +184,23 @@
 	      		<button type="button" class="btn btn-default" ng-click="editAddSS()">Add</button>
 	      		<button type="button" class="btn btn-primary" ng-click="editCancelSS()">Cancel</button>
 	    	</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+
+	<div ng-show='deleteGamepopup' class="modal-dialog">
+		<div class="modal-content">
+    		<div class="modal-header">
+      			<button type="button" class="close" ng-click="cancel()">&times;</button>
+    			<h4 class="modal-title">Delete Game</h4>
+    		</div>
+    		<div class="modal-body">
+      			<div>Are you sure you want to delete this game?</div>
+      			<div>This action cannot be undone.</div>
+    		</div>
+    		<div class="modal-footer">
+    			<button type="button" class="btn btn-default" ng-click="yesDeleteGame()">Yes</button>
+    			<button type="button" class="btn btn-primary" ng-click="noDeleteGame()">No</button>
+    		</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 	

@@ -191,6 +191,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
     $scope.submitformOpen = false;
     $scope.editformOpen = false;
     $scope.SSpopup = false;
+    $scope.deleteGamepopup = false;
 
     $scope.SSs = [];
 
@@ -250,6 +251,46 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
       console.log($scope.editSSs);
       $scope.editSSs.splice(index, 1);
       console.log($scope.editSSs);
+    }
+
+    $scope.deleteGame = function () {
+      $scope.closeAllForms();
+      $scope.deleteGamepopup = true;
+    }
+
+    $scope.yesDeleteGame = function() {
+      $http({
+        method: 'DELETE',
+        url: "http://2-dot-smg-server.appspot.com/games/" + currentGame.gameId + "?developerId=" + $cookieStore.get('devId')
+                                                          + "&accessSignature=" + $cookieStore.get('accessSignature'),
+        dataType: 'json', 
+        headers: { 'Content-Type': 'application/json' }
+      }).
+      success(function(returnVal) {
+        if(returnVal.error == "WRONG_ACCESS_SIGNATURE")
+        {
+          $window.alert("Hmm. There seems to be an issue with your stored info. Game not deleted, please log out and back in.");
+        }
+        else if(returnVal.error == "WRONG_DEVELOPER_ID")
+        {
+          $window.alert("Cannot delete, wrong developer ID");
+        }
+        else if(returnVal.success == "DELETED_GAME")
+        {
+          $window.alert('Game Deleted Successfully!');
+          console.log(returnVal);
+          $route.reload();
+        }
+      }).
+      error(function(err) {
+        $window.alert('You fail!');
+
+      })
+    }
+
+    $scope.noDeleteGame = function () {
+      $scope.deleteGamepopup = false;
+      $scope.editformOpen = true;
     }
 
 
@@ -452,8 +493,8 @@ SMG.controller('GetStartedCtrl', ['$scope',function($scope) {
 SMG.controller('FAQCtrl', ['$scope',function($scope) {
 }]);
 
-SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window',
-  function($scope, $cookieStore, $sce, $window) {
+SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window','$http','$location',
+  function($scope, $cookieStore, $sce, $window, $http, $location) {
   if($cookieStore.get('email') != undefined && $cookieStore.get('email') != null)
     $scope.email = $sce.trustAsHtml($cookieStore.get('email'));
   else
@@ -486,6 +527,67 @@ SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window',
   $scope.changePassword = function () {
     $window.location.href = "#/changePassword";
   };
+
+  $scope.accountShow = true;
+  $scope.deleteDeveloperPopup = false;
+
+  $scope.deleteDeveloper = function () {
+    $scope.accountShow = false;
+    $scope.deleteDeveloperPopup = true;
+  }
+
+  $scope.yesDeleteAccount = function () {
+    $http({
+      method: 'DELETE',
+      url: "http://2-dot-smg-server.appspot.com/developers/" + $cookieStore.get('devId') + "?accessSignature=" + $cookieStore.get('accessSignature'),
+      dataType: 'json',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      }).
+    success(function(returnVal)
+    {
+      if(returnVal.error)
+      {
+        console.log("Error: " + returnVal.error);
+        if(returnVal.error == "WRONG_ACCESS_SIGNATURE")
+        {
+          $window.alert("Delete Developer failed - Access Signature incorrect!");
+        }
+        else if(returnVal.error == "WRONG_DEVELOPER_ID")
+        {
+          $window.alert("Delete Developer failed - Developer ID not found");
+        }
+      }
+      else if(returnVal.success)
+      {
+        $cookieStore.remove("email");
+        $cookieStore.remove("password");
+        $cookieStore.remove("firstName");
+        $cookieStore.remove("lastName");
+        $cookieStore.remove("middleName");
+        $cookieStore.remove("nickname");
+        $cookieStore.remove("accessSignature");
+        $cookieStore.remove("devId");
+
+        $window.alert("Account deleted successfully!");
+
+        var fullLoc = $location.url();
+        var loc = fullLoc.indexOf("loggedin.html");
+        $window.location.href = fullLoc.substring(0,loc) + 'index.html';
+      }
+      }).
+      error(function(returnVal)
+      {
+        console.log("DELETE DEVELOPER CALL FAILED");
+      });
+
+  }
+
+  $scope.noDeleteAccount = function () {
+    $scope.deleteDeveloperPopup = false;
+    $scope.accountShow = true;
+  }
 }]);
 
 SMG.controller('UpdateDetailsCtrl', ['$scope','$http','$window','$cookieStore',

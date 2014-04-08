@@ -1,4 +1,4 @@
-<div class='account'>
+<div ng-show='accountShow' class='account'>
 	<form>
 		<table class='centerAccount'>
 			<tr>
@@ -38,5 +38,26 @@
 		<div>
 			<button class='btn btn-embossed btn-inverse' ng-click='changePassword()'>Change Password</button>
 		</div>
+		<div>
+			<button class='btn btn-embossed btn-inverse' ng-click='deleteDeveloper()'>Delete Account</button>
+		</div>
 	</form>
 </div>
+
+<div ng-show='deleteDeveloperPopup' class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="noDeleteAccount()">&times;</button>
+			<h4 class="modal-title">Delete Account</h4>
+		</div>
+		<div class="modal-body">
+			<div>Are you sure you want to delete your developer account?</div>
+			<div>Your games will still exist and will be detached from this account.</div>
+			<div>This action cannot be undone.</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" ng-click="yesDeleteAccount()">Yes</button>
+			<button type="button" class="btn btn-primary" ng-click="noDeleteAccount()">No</button>
+		</div>
+	</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
