@@ -699,9 +699,25 @@ SMG.controller('LogoutCtrl', ['$scope','$location','$window','$cookieStore',
 
 }]);
 
-SMG.controller("DashCtrl",['$routeParams','$http','$scope',function($routeParams,$http,$scope){
+SMG.controller("DashCtrl",['$routeParams','$http','$scope',
+  function($routeParams, $http, $scope){
     this.$routeParams = $routeParams;
- /*   $http({
+
+    $scope.retrieveGameStat = function() {
+      $http({
+        method: 'GET',
+        url: "http://2-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
+        dataType: 'json',
+        headers: { 'Content-Type': 'application/json' }
+      }).success(function(returnVal) {
+        console.log(returnVal);
+      }).error(function(returnVal) {
+        console.log(returnVal);
+      });
+
+    }
+
+    $http({
             method: 'GET',
             url: "http://2-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
             dataType: 'json'
@@ -720,7 +736,7 @@ SMG.controller("DashCtrl",['$routeParams','$http','$scope',function($routeParams
          }).error(function(returnVal)
             {
               console.log("Game Info Retrieval failed");
-            }); */
+            }); 
 
       var gameStats = {
             "highScore":{

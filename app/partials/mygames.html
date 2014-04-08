@@ -2,27 +2,33 @@
 	<br>
 	<div >
 		<table class='center' border="0" cellpadding="0" cellspacing="0">
+			<div>search:<input ng-model="query"></div><br>
+			<div>
+				sort by
+			<select ng-model="orderProp">
+				<option value="gameName">gameName</option>
+				<option value="url">url</option>
+				<option value="">origin</option>
+			</select>
+			</div>
 			<tr>
 				<td></td>
 				<td><input type='button' value='Game Name'></td>
 				<td><input type='button' value='Game URL'></td>
-				<td><input type='button' value='Visit'></td>
 				<td>Dashboard</td>
 				<td>Bug Report</td>
 			</tr>
 
-			<tr ng-repeat="game in games">
+			<tr ng-repeat="game in games | filter:query | orderBy:orderProp">
 				<td><button class='btn btn-embossed btn-inverse' ng-click='editGame($index)'>Edit</button></td>
 				<td>{{game.gameName}}</td>
 				<td>{{game.url}}</td>
-				<td>{{game.stat}}</td>
 				<td><a href="#/dash/{{game.gameId}}">Dashboard</a></td>
 				<td><a href="#/bugs">Bug Report</a></td>
 			</tr>
 
 			<tr>
 				<td><button class='btn btn-embossed btn-inverse' ng-click='showFormForNewGame()'>New</button></td>
-				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -38,7 +44,7 @@
 			<tr>
 				<td class='right'>Game Name:</td>
 				<td></td>
-				<td class='left'><input type='text' ng_model='gameName'>*</td>
+				<td class='left'><input type='text' ng-model='gameName'>*</td>
 			</tr>
 			<tr>
 				<td class='right'>Description:</td>
@@ -92,7 +98,7 @@
 			<tr>
 				<td class='right'>Game Name:</td>
 				<td></td>
-				<td class='left'><input type='text' ng_model='editGameName'>*</td>
+				<td class='left'><input type='text' ng-model='editGameName'>*</td>
 			</tr>
 			<tr>
 				<td class='right'>Description:</td>
