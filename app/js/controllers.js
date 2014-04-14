@@ -11,7 +11,7 @@ SMG.controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStor
   	{
   		$http({
   			method: 'GET',
-  			url: "http://3-dot-smg-server.appspot.com/developers/"+$scope.devId+"?password="+$scope.password
+  			url: "http://4-dot-smg-server.appspot.com/developers/"+$scope.devId+"?password="+$scope.password
   			}).
   		success(function(returnVal)
   		{
@@ -29,23 +29,8 @@ SMG.controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStor
   			}
   			else
   			{
-  				console.log("Email: " + returnVal.email);
-  				console.log("Password: " + returnVal.password);
-          console.log($location.url());
-          console.log(returnVal);
-
           $window.alert("Login Successful!");
 
-          $cookieStore.put("email", returnVal.email);
-          $cookieStore.put("password", $scope.password);
-          if(returnVal.firstName != undefined)
-            $cookieStore.put("firstName", returnVal.firstName);
-          if(returnVal.lastName != undefined)
-            $cookieStore.put("lastName", returnVal.lastName);
-          if(returnVal.middleName != undefined)
-            $cookieStore.put("middleName", returnVal.middleName);
-          if(returnVal.nickname != undefined)
-            $cookieStore.put("nickname", returnVal.nickname);
           $cookieStore.put("accessSignature", returnVal.accessSignature);
           $cookieStore.put("devId", $scope.devId);
 
@@ -65,8 +50,6 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
   function($scope, $http, $location, $window, $cookieStore) {
     $scope.createDeveloper = function()
 		{
-      console.log('EMAIL - ' + $scope.email);
-      console.log('PASSWORD - ' + $scope.password);
 			var jsonData =
 			{
 				"email": $scope.email
@@ -92,17 +75,14 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
       {
         jsonData.nickname = $scope.nickname;
       }
-
-      console.log('JSON Struct email - ' + jsonData.email);
-      console.log('JSON Struct password - ' + jsonData.password);
-      console.log('JSON Struct firstName - ' + jsonData.firstName);
-      console.log('JSON Struct middleName - ' + jsonData.middleName);
-      console.log('JSON Struct lastName - ' + jsonData.lastName);
-      console.log('JSON Struct nickname - ' + jsonData.nickname);
+      if($scope.imageURL != "")
+      {
+        jsonData.imageURL = $scope.imageURL;
+      }
 
 			$http({
 				method: 'POST',
-				url: "http://3-dot-smg-server.appspot.com/developers/",
+				url: "http://4-dot-smg-server.appspot.com/developers/",
 				data: JSON.stringify(jsonData),
 				dataType: 'json',
 				headers: {
@@ -131,7 +111,7 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
 
             $http({
               method: 'GET',
-              url: "http://3-dot-smg-server.appspot.com/developers/"+returnVal.developerId+"?password="+jsonData.password
+              url: "http://4-dot-smg-server.appspot.com/developers/"+returnVal.developerId+"?password="+jsonData.password
               }).
             success(function(returnVal2)
             {
@@ -149,21 +129,8 @@ SMG.controller('SignupCtrl', ['$scope','$http','$location','$window','$cookieSto
               }
               else
               {
-                console.log("Email: " + returnVal2.email);
-                console.log(returnVal2);
 
                 $window.alert("Login Successful!");
-
-                $cookieStore.put("email", returnVal2.email);
-                $cookieStore.put("password", jsonData.password);
-                if(returnVal2.firstName != undefined)
-                  $cookieStore.put("firstName", returnVal2.firstName);
-                if(returnVal2.lastName != undefined)
-                  $cookieStore.put("lastName", returnVal2.lastName);
-                if(returnVal2.middleName != undefined)
-                  $cookieStore.put("middleName", returnVal2.middleName);
-                if(returnVal2.nickname != undefined)
-                  $cookieStore.put("nickname", returnVal2.nickname);
                 $cookieStore.put("accessSignature", returnVal2.accessSignature);
                 $cookieStore.put("devId", returnVal.developerId);
 
@@ -261,7 +228,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
     $scope.yesDeleteGame = function() {
       $http({
         method: 'DELETE',
-        url: "http://3-dot-smg-server.appspot.com/games/" + currentGame.gameId + "?developerId=" + $cookieStore.get('devId')
+        url: "http://4-dot-smg-server.appspot.com/games/" + currentGame.gameId + "?developerId=" + $cookieStore.get('devId')
                                                           + "&accessSignature=" + $cookieStore.get('accessSignature'),
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
@@ -356,7 +323,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
 
       $http({
         method: 'POST',
-        url: "http://3-dot-smg-server.appspot.com/games",
+        url: "http://4-dot-smg-server.appspot.com/games",
         data: JSON.stringify(gameInfo), 
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
@@ -423,7 +390,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
 
       $http({
         method: 'PUT',
-        url: "http://3-dot-smg-server.appspot.com/games/" + currentGame.gameId,
+        url: "http://4-dot-smg-server.appspot.com/games/" + currentGame.gameId,
         data: JSON.stringify(gameInfo), 
         dataType: 'json', 
         headers: { 'Content-Type': 'application/json' }
@@ -459,7 +426,7 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
 
     $http({
       method: 'GET',
-      url: "http://3-dot-smg-server.appspot.com/gameinfo/all?developerId="+$cookieStore.get('devId')+"&accessSignature="+$cookieStore.get('accessSignature'),
+      url: "http://4-dot-smg-server.appspot.com/gameinfo/all?developerId="+$cookieStore.get('devId')+"&accessSignature="+$cookieStore.get('accessSignature'),
       dataType: 'json', 
       headers: { 'Content-Type': 'application/json' }
     }).
@@ -498,30 +465,35 @@ SMG.controller('FAQCtrl', ['$scope',function($scope) {
 
 SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window','$http','$location',
   function($scope, $cookieStore, $sce, $window, $http, $location) {
-  if($cookieStore.get('email') != undefined && $cookieStore.get('email') != null)
-    $scope.email = $sce.trustAsHtml($cookieStore.get('email'));
-  else
-    $scope.email = "          ";
-  if($cookieStore.get('devId') != undefined && $cookieStore.get('devId') != null)
-    $scope.devId = $sce.trustAsHtml($cookieStore.get('devId'));
-  else
-    $scope.email = "          ";
-  if($cookieStore.get('firstName') != undefined && $cookieStore.get('firstName') != null)
-    $scope.firstName = $sce.trustAsHtml($cookieStore.get('firstName'));
-  else
-    $scope.firstName = "          ";
-  if($cookieStore.get('middleName') != undefined && $cookieStore.get('middleName') != null)
-    $scope.middleName = $sce.trustAsHtml($cookieStore.get('middleName'));
-  else
-    $scope.middleName = "          ";
-  if($cookieStore.get('lastName') != undefined && $cookieStore.get('lastName') != null)
-    $scope.lastName = $sce.trustAsHtml($cookieStore.get('lastName'));
-  else
-    $scope.lastName = "          ";
-  if($cookieStore.get('nickname') != undefined && $cookieStore.get('nickname') != null)
-    $scope.nickname = $sce.trustAsHtml($cookieStore.get('nickname'));
-  else
-    $scope.nickname = "          ";
+
+    var devId = $cookieStore.get('devId');
+    var accessSignature = $cookieStore.get('accessSignature');
+
+    $http({
+      method: 'GET',
+      url: "http://4-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get('devId')+"?accessSignature="+$cookieStore.get('accessSignature'),
+      dataType: 'json', 
+      headers: { 'Content-Type': 'application/json' }
+    }).
+    success(function(returnVal) {
+      if(returnVal.error == "WRONG_DEVELOPER_ID")
+      {
+        $window.alert("Hmm. There seems to be an issue with your stored info. Please log out and back in.");
+      }
+      else
+      {
+        $scope.email = returnVal.email;
+        $scope.devId = $cookieStore.get('devId');
+        $scope.firstName = returnVal.firstName;
+        $scope.middleName = returnVal.middleName;
+        $scope.lastName = returnVal.lastName;
+        $scope.nickname = returnVal.nickname;
+        $scope.imageURL = returnVal.imageURL;
+      }
+    }).
+    error(function(err) {
+      $console.log("Failed to get Game Information");
+    })
 
   $scope.updateDetails = function () {
     $window.location.href = "#/updateDetails";
@@ -542,7 +514,7 @@ SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window','$http',
   $scope.yesDeleteAccount = function () {
     $http({
       method: 'DELETE',
-      url: "http://3-dot-smg-server.appspot.com/developers/" + $cookieStore.get('devId') + "?accessSignature=" + $cookieStore.get('accessSignature'),
+      url: "http://4-dot-smg-server.appspot.com/developers/" + $cookieStore.get('devId') + "?accessSignature=" + $cookieStore.get('accessSignature'),
       dataType: 'json',
       headers: {
         'Content-Type': 'application/json'
@@ -564,12 +536,6 @@ SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window','$http',
       }
       else if(returnVal.success)
       {
-        $cookieStore.remove("email");
-        $cookieStore.remove("password");
-        $cookieStore.remove("firstName");
-        $cookieStore.remove("lastName");
-        $cookieStore.remove("middleName");
-        $cookieStore.remove("nickname");
         $cookieStore.remove("accessSignature");
         $cookieStore.remove("devId");
 
@@ -595,21 +561,38 @@ SMG.controller('AccountCtrl', ['$scope','$cookieStore','$sce','$window','$http',
 
 SMG.controller('UpdateDetailsCtrl', ['$scope','$http','$window','$cookieStore',
   function($scope, $http, $window, $cookieStore) {
-  if($cookieStore.get('firstName') != undefined && $cookieStore.get('firstName') != null)
-    $scope.firstName = $cookieStore.get('firstName');
-  if($cookieStore.get('middleName') != undefined && $cookieStore.get('middleName') != null)
-    $scope.middleName = $cookieStore.get('middleName');
-  if($cookieStore.get('lastName') != undefined && $cookieStore.get('lastName') != null)
-    $scope.lastName = $cookieStore.get('lastName');
-  if($cookieStore.get('nickname') != undefined && $cookieStore.get('nickname') != null)
-    $scope.nickname = $cookieStore.get('nickname');
+  
+  $http({
+      method: 'GET',
+      url: "http://4-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get('devId')+"?accessSignature="+$cookieStore.get('accessSignature'),
+      dataType: 'json', 
+      headers: { 'Content-Type': 'application/json' }
+    }).
+    success(function(returnVal) {
+      if(returnVal.error == "WRONG_DEVELOPER_ID")
+      {
+        $window.alert("Hmm. There seems to be an issue with your stored info. Please log out and back in.");
+      }
+      else
+      {
+        $scope.email = returnVal.email;
+        $scope.devId = $cookieStore.get('devId');
+        $scope.firstName = returnVal.firstName;
+        $scope.middleName = returnVal.middleName;
+        $scope.lastName = returnVal.lastName;
+        $scope.nickname = returnVal.nickname;
+        $scope.imageURL = returnVal.imageURL;
+      }
+    }).
+    error(function(err) {
+      $console.log("Failed to get Game Information");
+    })
 
 
   $scope.updateDetails = function() {
         var jsonData =
         {
-          "accessSignature": $cookieStore.get("accessSignature"),
-          "password": $cookieStore.get("password")
+          "accessSignature": $cookieStore.get("accessSignature")
         };
 
         if($scope.firstName != "")
@@ -628,17 +611,14 @@ SMG.controller('UpdateDetailsCtrl', ['$scope','$http','$window','$cookieStore',
         {
           jsonData.nickname = $scope.nickname;
         }
-
-        console.log('JSON Struct accessSignature - ' + jsonData.accessSignature);
-        console.log('JSON Struct password - ' + jsonData.password);
-        console.log('JSON Struct firstName - ' + jsonData.firstName);
-        console.log('JSON Struct middleName - ' + jsonData.middleName);
-        console.log('JSON Struct lastName - ' + jsonData.lastName);
-        console.log('JSON Struct nickname - ' + jsonData.nickname);
+        if($scope.imageURL != "")
+        {
+          jsonData.imageURL = $scope.imageURL;
+        }
 
     $http({
       method: 'PUT',
-      url: "http://3-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
+      url: "http://4-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
       data: JSON.stringify(jsonData),
       dataType: 'json',
       headers: {
@@ -652,58 +632,17 @@ SMG.controller('UpdateDetailsCtrl', ['$scope','$http','$window','$cookieStore',
         console.log("Error: " + returnVal.error);
         if(returnVal.error == "WRONG_ACCESS_SIGNATURE")
         {
-          $window.alert("Login failed - Access Signature incorrect!");
+          $window.alert("Update details failed - Access Signature incorrect!");
         }
         else if(returnVal.error == "WRONG_DEVELOPER_ID")
         {
-          $window.alert("Login failed - Developer ID not found");
+          $window.alert("Update details failed - Developer ID not found");
         }
       }
       else
       {
-        $http({
-          method: 'GET',
-          url: "http://3-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId")+"?accessSignature="+$cookieStore.get("accessSignature")
-          }).
-        success(function(returnVal)
-        {
-          if(returnVal.error)
-          {
-            console.log("Error: " + returnVal.error);
-            if(returnVal.error == "WRONG_PASSWORD")
-            {
-              $window.alert("Login failed - Password incorrect!");
-            }
-            else if(returnVal.error == "WRONG_DEVELOPER_ID")
-            {
-              $window.alert("Login failed - Developer ID not found");
-            }
-          }
-          else
-          {
-
-            $cookieStore.remove("firstName");
-            $cookieStore.remove("middleName");
-            $cookieStore.remove("lastName");
-            $cookieStore.remove("nickname");
-
-            if(returnVal.firstName != undefined)
-              $cookieStore.put("firstName", returnVal.firstName);
-            if(returnVal.lastName != undefined)
-              $cookieStore.put("lastName", returnVal.lastName);
-            if(returnVal.middleName != undefined)
-              $cookieStore.put("middleName", returnVal.middleName);
-            if(returnVal.nickname != undefined)
-              $cookieStore.put("nickname", returnVal.nickname);
-
-            $window.alert("Details updated successfully!");
-            $window.location.href = "#/account";
-          }
-        }).
-        error(function(returnVal)
-        {
-          console.log("LOGIN DEVELOPER CALL FAILED");
-        });
+        $window.alert("Details updated successfully!");
+        $window.location.href = "#/account";
       }
     }).
     error(function(returnVal)
@@ -724,14 +663,7 @@ SMG.controller('ChangePasswordCtrl', ['$scope','$http','$window','$cookieStore',
           "password": $scope.new
         };
 
-        console.log('JSON Struct accessSignature - ' + jsonData.accessSignature);
-        console.log('JSON Struct password - ' + jsonData.password);
-
-        if($scope.old != $cookieStore.get("password"))
-        {
-          window.alert("Old password not correct!");
-        }
-        else if($scope.new != $scope.repeat)
+        if($scope.new != $scope.repeat)
         {
           window.alert("New passwords do not match");
         }
@@ -739,7 +671,7 @@ SMG.controller('ChangePasswordCtrl', ['$scope','$http','$window','$cookieStore',
         {
           $http({
             method: 'PUT',
-            url: "http://3-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
+            url: "http://4-dot-smg-server.appspot.com/developerinfo/"+$cookieStore.get("devId"),
             data: JSON.stringify(jsonData),
             dataType: 'json',
             headers: {
@@ -762,8 +694,6 @@ SMG.controller('ChangePasswordCtrl', ['$scope','$http','$window','$cookieStore',
             }
             else
             {
-              $cookieStore.put("password", $scope.new);
-
               $window.alert("Password changed successfully!");
               $window.location.href = "#/account";
             }
@@ -780,12 +710,6 @@ SMG.controller('LogoutCtrl', ['$scope','$location','$window','$cookieStore',
   function($scope, $location, $window, $cookieStore) {
 
   $scope.yes = function () {
-  $cookieStore.remove("email");
-  $cookieStore.remove("password");
-  $cookieStore.remove("firstName");
-  $cookieStore.remove("lastName");
-  $cookieStore.remove("middleName");
-  $cookieStore.remove("nickname");
   $cookieStore.remove("accessSignature");
   $cookieStore.remove("devId");
 
@@ -811,7 +735,7 @@ SMG.controller("DashCtrl",['$routeParams','$http','$scope',
     $scope.retrieveGameStat = function() {
       $http({
         method: 'GET',
-        url: "http://3-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
+        url: "http://4-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
         dataType: 'json',
         headers: { 'Content-Type': 'application/json' }
       }).success(function(returnVal) {
@@ -824,7 +748,7 @@ SMG.controller("DashCtrl",['$routeParams','$http','$scope',
 
     $http({
             method: 'GET',
-            url: "http://3-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
+            url: "http://4-dot-smg-server.appspot.com/gameinfo/stats?gameId="+$routeParams.gameId,
             dataType: 'json'
     }).success(function(returnVal)
           {

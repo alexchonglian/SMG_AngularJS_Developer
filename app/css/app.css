@@ -34,11 +34,25 @@
   margin-left: 15%;
 }
 
-.centerAccount {
-  width: 50%;
-  margin-left: 20%;
-  margin-right: 30%;
+.centerChangePassword {
+  width: 95%;
+  margin-right: 5%;
+}
 
+.centerUpdateDetails {
+  width: 95%;
+  margin-left: 5%;
+}
+
+.centerSignup {
+  width: 70%;
+  margin-right: 15%;
+  margin-left: 15%;
+}
+
+.centerAccount {
+  width: 65%;
+  margin-right: 35%;
 }
 
 .right {
