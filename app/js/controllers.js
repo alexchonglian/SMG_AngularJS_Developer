@@ -4,6 +4,31 @@
 
 var SMG = angular.module('SMGDevApp.controllers', ['ngCookies', 'ngSanitize']);
 
+SMG.controller('cookieCtrl', ['$scope', '$cookieStore', '$location',
+  function($scope, $cookieStore, $location) {
+    var loc = $location.url();
+    var actualLoc = loc.indexOf("?") + 1;
+    var query = loc.substring(actualLoc);
+    var vars = query.split("&");
+
+    for (var i=0;i<vars.length;i++)
+    {
+      var pair = vars[i].split("=");
+        // If first entry with this name
+      if (pair[0] === "developerId")
+      {
+        var devIdString = "devId=" + pair[1];
+        $cookieStore.put("devId", pair[1]);
+      }
+      else if (pair[0] === "accessSignature")
+      {
+        var accessSignatureString = "accessSignature=" + pair[1];
+        $cookieStore.put("accessSignature", pair[1]);
+      }
+    }
+
+  }]);
+
 
 SMG.controller('LoginCtrl', ['$scope','$http','$location','$window','$cookieStore',
   function($scope, $http, $location, $window, $cookieStore) {
