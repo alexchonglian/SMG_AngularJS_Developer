@@ -110,8 +110,8 @@
         
     </table>
     <div class="chalkboard">
-        <span>Current Number of Players: {{gameStats.currentGames.length}} </span><br>
-        <span>Historical Number of Players: {{gameStats.finishedGames.length}} </span><br>
-        <span>Best Player (id): {{gameStats.highScore.playerId}} </span>
+        <span>{{ 'CURRENTNUMBEROFPLAYERS' | translate }}{{gameStats.currentGames.length}} </span><br>
+        <span>{{ 'HISTORICALNUMBEROFPLAYERS' | translate }}{{gameStats.finishedGames.length}} </span><br>
+        <span>{{ 'BESTPLAYERID' | translate }}{{gameStats.highScore.playerId}} </span>
     </div>
 </div>

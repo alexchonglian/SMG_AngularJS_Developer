@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var SMG = angular.module('SMGDevApp.controllers', ['ngCookies', 'ngSanitize']);
+var SMG = angular.module('SMGDevApp.controllers', ['ngCookies', 'ngSanitize', 'pascalprecht.translate']);
 
 SMG.controller('cookieCtrl', ['$scope', '$cookieStore', '$location',
   function($scope, $cookieStore, $location) {

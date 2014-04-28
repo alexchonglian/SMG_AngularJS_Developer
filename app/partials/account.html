@@ -2,49 +2,49 @@
 	<form>
 		<table class='centerAccount'>
 			<tr>
-				<td class='right'>Email:</td>
+				<td class='right'>{{ 'EMAIL' | translate }}</td>
 				<td></td>
 				<td class='left' ng-bind-html='email'></td>
 			</tr>
 			<tr>
-				<td class='right'>Developer Id:</td>
+				<td class='right'>{{ 'DEVELOPERID' | translate }}</td>
 				<td></td>
 				<td class='left' ng-bind-html='devId'></td>
 			</tr>
 			<tr>
-				<td class='right'>First Name:</td>
+				<td class='right'>{{ 'FIRSTNAME' | translate }}</td>
 				<td></td>
 				<td class='left' ng-bind-html='firstName'></td>
 			</tr>
 			<tr>
-				<td class='right'>Middle Name:</td>
+				<td class='right'>{{ 'MIDDLENAME' | translate }}</td>
 				<td></td>
 				<td class='left' ng-bind-html='middleName'></td>
 			</tr>
 			<tr>
-				<td class='right'>Last Name:</td>
+				<td class='right'>{{ 'LASTNAME' | translate }}</td>
 				<td></td>
 				<td class='left' ng-bind-html='lastName'></td>
 			</tr>
 			<tr>
-				<td class='right'>Nickname:</td>
+				<td class='right'>{{ 'NICKNAME' | translate }}</td>
 				<td></td>
 				<td class='left' ng-bind-html='nickname'></td>
 			</tr>
 			<tr>
-				<td class='right'>User Image (URL):</td>
+				<td class='right'>{{ 'USERIMAGEURL' | translate }}</td>
 				<td></td>
 				<td class='left' ng-bind-html='imageURL'></td>
 			</tr>
 		</table>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-click='updateDetails()'>Update Details</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='updateDetails()'>{{ 'UPDATEDETAILS' | translate }}</button>
 		</div>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-click='changePassword()'>Change Password</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='changePassword()'>{{ 'CHANGEPASSWORD' | translate }}</button>
 		</div>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-click='deleteDeveloper()'>Delete Account</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='deleteDeveloper()'>{{ 'DELETEACCOUNT' | translate }}</button>
 		</div>
 	</form>
 </div>
@@ -53,16 +53,16 @@
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" ng-click="noDeleteAccount()">&times;</button>
-			<h4 class="modal-title">Delete Account</h4>
+			<h4 class="modal-title">{{ 'DELETEACCOUNT' | translate }}</h4>
 		</div>
 		<div class="modal-body">
-			<div>Are you sure you want to delete your developer account?</div>
-			<div>Your games will still exist and will be detached from this account.</div>
-			<div>This action cannot be undone.</div>
+			<div>{{ 'DELETEACCOUNTBODY1' | translate }}</div>
+			<div>{{ 'DELETEACCOUNTBODY2' | translate }}</div>
+			<div>{{ 'DELETEACCOUNTBODY3' | translate }}</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-default" ng-click="yesDeleteAccount()">Yes</button>
-			<button type="button" class="btn btn-primary" ng-click="noDeleteAccount()">No</button>
+			<button type="button" class="btn btn-default" ng-click="yesDeleteAccount()">{{ 'YES' | translate }}</button>
+			<button type="button" class="btn btn-primary" ng-click="noDeleteAccount()">{{ 'NO' | translate }}</button>
 		</div>
 	</div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->

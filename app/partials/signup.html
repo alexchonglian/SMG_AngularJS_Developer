@@ -2,43 +2,43 @@
 	<form>
 		<table class='centerSignup'>
 			<tr>
-				<td class='right'>Email:</td>
+				<td class='right'>{{ 'EMAIL' | translate }}</td>
 				<td></td>
 				<td><input type='email' ng_model='email'></td>
 			</tr>
 			<tr>
-				<td class='right'>Password:</td>
+				<td class='right'>{{ 'PASSWORD' | translate }}</td>
 				<td></td>
 				<td><input type='password' ng-model='password'></td>
 			</tr>
 			<tr>
-				<td class='right'>First Name:</td>
+				<td class='right'>{{ 'FIRSTNAME' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='firstName'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Middle Name:</td>
+				<td class='right'>{{ 'MIDDLENAME' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='middleName'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Last Name:</td>
+				<td class='right'>{{ 'LASTNAME' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='lastName'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Nickname:</td>
+				<td class='right'>{{ 'NICKNAME' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='nickname'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>User Image (URL):</td>
+				<td class='right'>{{ 'USERIMAGEURL' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='imageURL'>*</td>
 			</tr>
 		</table>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-click='createDeveloper()'>Sign Up</button>
+			<button class='btn btn-embossed btn-inverse' ng-click='createDeveloper()'>{{ 'SIGNUPTAB' | translate }}</button>
 		</div>
 	</form>
 </div>

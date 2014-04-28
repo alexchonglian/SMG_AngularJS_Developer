@@ -2,33 +2,33 @@
 	<br>
 	<div >
 		<table class='center' border="0" cellpadding="0" cellspacing="0">
-			<div>search:<input ng-model="query"></div><br>
+			<div>{{ 'SEARCH' | translate }}<input ng-model="query"></div><br>
 			<div>
-				sort by
+				{{ 'SORTBY' | translate }}
 			<select ng-model="orderProp">
-				<option value="gameName">gameName</option>
-				<option value="url">url</option>
-				<option value="">origin</option>
+				<option value="gameName">{{ 'GAMENAMESL' | translate }}</option>
+				<option value="url">{{ 'URLSL' | translate }}</option>
+				<option value="">{{ 'ORIGIN' | translate }}</option>
 			</select>
 			</div>
 			<tr>
 				<td></td>
 				<td><input type='button' value='Game Name'></td>
 				<td><input type='button' value='Game URL'></td>
-				<td>Dashboard</td>
-				<td>Bug Report</td>
+				<td>{{ 'DASHBOARD' | translate }}</td>
+				<td>{{ 'BUGREPORT' | translate }}</td>
 			</tr>
 
 			<tr ng-repeat="game in games | filter:query | orderBy:orderProp">
-				<td><button class='btn btn-embossed btn-inverse' ng-click='editGame($index)'>Edit</button></td>
+				<td><button class='btn btn-embossed btn-inverse' ng-click='editGame($index)'>{{ 'EDIT' | translate }}</button></td>
 				<td>{{game.gameName}}</td>
 				<td>{{game.url}}</td>
-				<td><a href="#/dash/{{game.gameId}}">Dashboard</a></td>
-				<td><a href="#/bugs">Bug Report</a></td>
+				<td><a href="#/dash/{{game.gameId}}">{{ 'DASHBOARD' | translate }}</a></td>
+				<td><a href="#/bugs">{{ 'BUGREPORT' | translate }}</a></td>
 			</tr>
 
 			<tr>
-				<td><button class='btn btn-embossed btn-inverse' ng-click='showFormForNewGame()'>New</button></td>
+				<td><button class='btn btn-embossed btn-inverse' ng-click='showFormForNewGame()'>{{ 'NEW' | translate }}</button></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -42,37 +42,37 @@
 	<form ng-show='submitformOpen'>
 		<table class='center'>
 			<tr>
-				<td class='right'>Game Name:</td>
+				<td class='right'>{{ 'GAMENAME' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='gameName'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Description:</td>
+				<td class='right'>{{ 'DESCRIPTION' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='description'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>URL:</td>
+				<td class='right'>{{ 'URL' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='url'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Width:</td>
+				<td class='right'>{{ 'WIDTH' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' value='800' ng-model='width'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Height:</td>
+				<td class='right'>{{ 'HEIGHT' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' value='800' ng-model='height'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Has Tokens:</td>
+				<td class='right'>{{ 'HASTOKENS' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='checkbox' ng-model='hasToken'></td>
 			</tr>
 			<tr>
-				<td class='right'>Icon:</td>
+				<td class='right'>{{ 'ICON' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='icon'></td>
 			</tr>
@@ -83,11 +83,11 @@
 			</tr>
 		</table>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-model='addScreenShot' ng-click='addScreenShot()'>Add Screen Shot</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='addScreenShot' ng-click='addScreenShot()'>{{ 'ADDSCREENSHOT' | translate }}</button>
 		</div>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-model='submitButton' ng-click='submitGame()'>Submit Game</button>
-			<button class='btn btn-embossed btn-inverse' ng-model='cancelSubmitButton' ng-click='closeAllForms()'>Cancel</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='submitButton' ng-click='submitGame()'>{{ 'SUBMITGAME' | translate }}</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='cancelSubmitButton' ng-click='closeAllForms()'>{{ 'CANCEL' | translate }}</button>
 		</div>
 	</form>
 	</div>
@@ -96,37 +96,37 @@
 	<form ng-show='editformOpen'>
 		<table class='center'>
 			<tr>
-				<td class='right'>Game Name:</td>
+				<td class='right'>{{ 'GAMENAME' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='editGameName'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Description:</td>
+				<td class='right'>{{ 'DESCRIPTION' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='editDescription'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>URL:</td>
+				<td class='right'>{{ 'URL' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='editUrl'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Width:</td>
+				<td class='right'>{{ 'WIDTH' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' value='800' ng-model='editWidth'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Height:</td>
+				<td class='right'>{{ 'HEIGHT' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' value='800' ng-model='editHeight'>*</td>
 			</tr>
 			<tr>
-				<td class='right'>Has Tokens:</td>
+				<td class='right'>{{ 'HASTOKENS' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='checkbox' ng-model='editHasToken'></td>
 			</tr>
 			<tr>
-				<td class='right'>Icon:</td>
+				<td class='right'>{{ 'ICON' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='editIcon'></td>
 			</tr>
@@ -137,14 +137,14 @@
 			</tr>
 		</table>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-model='editAddScreenShot' ng-click='editAddScreenShot()'>Add Screen Shot</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='editAddScreenShot' ng-click='editAddScreenShot()'>{{ 'ADDSCREENSHOT' | translate }}</button>
 		</div>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-model='updateGameButton' ng-click='updateGame()'>Update Game</button>
-			<button class='btn btn-embossed btn-inverse' ng-model='editCancelButton' ng-click='closeAllForms()'>Cancel</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='updateGameButton' ng-click='updateGame()'>{{ 'UPDATEGAME' | translate }}</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='editCancelButton' ng-click='closeAllForms()'>{{ 'CANCEL' | translate }}</button>
 		</div>
 		<div>
-			<button class='btn btn-embossed btn-inverse' ng-model='deleteGame' ng-click='deleteGame()'>Delete Game</button>
+			<button class='btn btn-embossed btn-inverse' ng-model='deleteGame' ng-click='deleteGame()'>{{ 'DELETEGAME' | translate }}</button>
 		</div>
 	</form>
 	</div>
@@ -153,20 +153,20 @@
 	    <div class="modal-content">
 	   		<div class="modal-header">
 	      		<button type="button" class="close" ng-click="cancel()">&times;</button>
-	      		<h4 class="modal-title">Add Screen Shot</h4>
+	      		<h4 class="modal-title">{{ 'ADDSCREENSHOT' | translate }}</h4>
 	    	</div>
 	    	<div class="modal-body">
 				<table class='center'>
 					<tr>
-						<td class='right'>Screen Shot:</td>
+						<td class='right'>{{ 'SCREENSHOT' | translate }}</td>
 						<td></td>
 						<td class='left'><input type='text' ng-model='screenShot'></td>
 					</tr>
 				</table>
 	    	</div>
 	    	<div class="modal-footer">
-	      		<button type="button" class="btn btn-default" ng-click="addSS()">Add</button>
-	      		<button type="button" class="btn btn-primary" ng-click="cancelSS()">Cancel</button>
+	      		<button type="button" class="btn btn-default" ng-click="addSS()">{{ 'ADD' | translate }}</button>
+	      		<button type="button" class="btn btn-primary" ng-click="cancelSS()">{{ 'CANCEL' | translate }}</button>
 	    	</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -175,20 +175,20 @@
 	    <div class="modal-content">
 	   		<div class="modal-header">
 	      		<button type="button" class="close" ng-click="cancel()">&times;</button>
-	      		<h4 class="modal-title">Add Screen Shot</h4>
+	      		<h4 class="modal-title">{{ 'ADDSCREENSHOT' | translate }}</h4>
 	    	</div>
 	    	<div class="modal-body">
 				<table class='center'>
 					<tr>
-						<td class='right'>Screen Shot:</td>
+						<td class='right'>{{ 'SCREENSHOT' | translate }}</td>
 						<td></td>
 						<td class='left'><input type='text' ng-model='editScreenShot'></td>
 					</tr>
 				</table>
 	    	</div>
 	    	<div class="modal-footer">
-	      		<button type="button" class="btn btn-default" ng-click="editAddSS()">Add</button>
-	      		<button type="button" class="btn btn-primary" ng-click="editCancelSS()">Cancel</button>
+	      		<button type="button" class="btn btn-default" ng-click="editAddSS()">{{ 'ADD' | translate }}</button>
+	      		<button type="button" class="btn btn-primary" ng-click="editCancelSS()">{{ 'CANCEL' | translate }}</button>
 	    	</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
@@ -197,15 +197,15 @@
 		<div class="modal-content">
     		<div class="modal-header">
       			<button type="button" class="close" ng-click="cancel()">&times;</button>
-    			<h4 class="modal-title">Delete Game</h4>
+    			<h4 class="modal-title">{{ 'DELETEGAME' | translate }}</h4>
     		</div>
     		<div class="modal-body">
-      			<div>Are you sure you want to delete this game?</div>
-      			<div>This action cannot be undone.</div>
+      			<div>{{ 'DELETEGAMEBODY1' | translate }}</div>
+      			<div>{{ 'DELETEGAMEBODY2' | translate }}</div>
     		</div>
     		<div class="modal-footer">
-    			<button type="button" class="btn btn-default" ng-click="yesDeleteGame()">Yes</button>
-    			<button type="button" class="btn btn-primary" ng-click="noDeleteGame()">No</button>
+    			<button type="button" class="btn btn-default" ng-click="yesDeleteGame()">{{ 'YES' | translate }}</button>
+    			<button type="button" class="btn btn-primary" ng-click="noDeleteGame()">{{ 'NO' | translate }}</button>
     		</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
