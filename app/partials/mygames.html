@@ -11,28 +11,16 @@
 				<option value="">{{ 'ORIGIN' | translate }}</option>
 			</select>
 			</div>
-			<tr>
-				<td></td>
-				<td><input type='button' value='Game Name'></td>
-				<td><input type='button' value='Game URL'></td>
-				<td>{{ 'DASHBOARD' | translate }}</td>
-				<td>{{ 'BUGREPORT' | translate }}</td>
-			</tr>
 
 			<tr ng-repeat="game in games | filter:query | orderBy:orderProp">
-				<td><button class='btn btn-embossed btn-inverse' ng-click='editGame($index)'>{{ 'EDIT' | translate }}</button></td>
-				<td>{{game.gameName}}</td>
-				<td>{{game.url}}</td>
-				<td><a href="#/dash/{{game.gameId}}">{{ 'DASHBOARD' | translate }}</a></td>
-				<td><a href="#/bugs">{{ 'BUGREPORT' | translate }}</a></td>
+				<td>Game Name: {{game.gameName}}<br>
+				Game Url: {{game.url}}<br>
+				<a href="#/dash/{{game.gameId}}">{{ 'DASHBOARD' | translate }}</a><br>
+				<button class='btn btn-embossed btn-inverse' ng-click='editGame($index)'>{{ 'EDIT' | translate }}</button></td>
 			</tr>
 
 			<tr>
 				<td><button class='btn btn-embossed btn-inverse' ng-click='showFormForNewGame()'>{{ 'NEW' | translate }}</button></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
 			</tr>
 		</table>
 
@@ -55,17 +43,6 @@
 				<td class='right'>{{ 'URL' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='url'>*</td>
-			</tr>
-			<tr>
-				<td class='right'>{{ 'WIDTH' | translate }}</td>
-				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='width'>*</td>
-			</tr>
-			<tr>
-				<td class='right'>{{ 'HEIGHT' | translate }}</td>
-				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='height'>*</td>
-			</tr>
 			<tr>
 				<td class='right'>{{ 'HASTOKENS' | translate }}</td>
 				<td></td>
@@ -109,16 +86,6 @@
 				<td class='right'>{{ 'URL' | translate }}</td>
 				<td></td>
 				<td class='left'><input type='text' ng-model='editUrl'>*</td>
-			</tr>
-			<tr>
-				<td class='right'>{{ 'WIDTH' | translate }}</td>
-				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='editWidth'>*</td>
-			</tr>
-			<tr>
-				<td class='right'>{{ 'HEIGHT' | translate }}</td>
-				<td></td>
-				<td class='left'><input type='text' value='800' ng-model='editHeight'>*</td>
 			</tr>
 			<tr>
 				<td class='right'>{{ 'HASTOKENS' | translate }}</td>
@@ -209,5 +176,8 @@
     		</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
+
+	
+  <meta name="viewport" content="width=320, initial-scale=1">
 	
 </div>

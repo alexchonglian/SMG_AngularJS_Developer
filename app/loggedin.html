@@ -12,16 +12,16 @@
     <h1>{{ 'DEVELOPERHOME' | translate }}</h1>
 
     <ul>
-      <li><a id='emailTab' href='#/account'>{{ 'ACCOUNTTAB' | translate }}</a></li>
       <li><a href='#/logout'>{{ 'LOGOUTTAB' | translate }}</a></li>
     </ul>
-    
-    <div>
+
     <ul>
-      
+      <li><a id='emailTab' href='#/account'>{{ 'ACCOUNTTAB' | translate }}</a></li>
+    </ul>
+
+    <ul>
       <li><a href='#/mygames'>{{ 'MYGAMESTAB' | translate }}</a></li>
     </ul>
-    </div>
 
   </div>
 
@@ -63,5 +63,7 @@
   <script type="text/javascript" src="http://www.amcharts.com/lib/3/themes/chalk.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
   <div ng-controller='cookieCtrl'></div>  
+
+  <meta name="viewport" content="width=320, initial-scale=1">
 </body>
 </html>

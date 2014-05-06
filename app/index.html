@@ -9,11 +9,15 @@
 </head>
 <body>
   <div id='header'>
-    <span>{{ 'DEVELOPERHOME' | translate }}</span>
+    <h1>{{ 'DEVELOPERHOME' | translate }}</h1>
+      <ul>
+        <li><a href='#/home'>{{ 'HOMETAB' | translate }}</a></li>
+      </ul>
+      <ul>
+        <li><a href='#/signup'>{{ 'SIGNUPTAB' | translate }}</a></li>
+      </ul>
       <ul>
         <li><a href='#/login'>{{ 'LOGINTAB' | translate }}</a></li>
-        <li><a href='#/signup'>{{ 'SIGNUPTAB' | translate }}</a></li>
-        <li><a href='#/home'>{{ 'HOMETAB' | translate }}</a></li>
       </ul>
   </div>
 
@@ -51,5 +55,7 @@
   <link rel="stylesheet/less" type="text/css" href="less/app.less" />
  
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+
+  <meta name="viewport" content="width=320, initial-scale=1">
 </body>
 </html>

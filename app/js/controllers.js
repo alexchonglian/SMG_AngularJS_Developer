@@ -295,8 +295,6 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
       $scope.editGameName = currentGame.gameName;
       $scope.editDescription = currentGame.description;
       $scope.editUrl = currentGame.url;
-      $scope.editWidth = currentGame.width;
-      $scope.editHeight = currentGame.height;
       $scope.editHasTokens = currentGame.hasTokens;
 
       var pics = currentGame.pics;
@@ -321,8 +319,6 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
         'developerId':$cookieStore.get('devId'),
         'accessSignature':$cookieStore.get('accessSignature'),
         'description':$scope.description,
-        'width':$scope.width,
-        'height':$scope.height,
         'gameName':$scope.gameName,
         'url':$scope.url
       }
@@ -387,8 +383,6 @@ SMG.controller('MyGamesCtrl', ['$scope','$http','$window','$cookieStore','$route
         'developerId':$cookieStore.get('devId'),
         'accessSignature':$cookieStore.get('accessSignature'),
         'description':$scope.editDescription,
-        'width':$scope.editWidth,
-        'height':$scope.editHeight,
         'gameName':$scope.editGameName,
         'url':$scope.editUrl
       }
